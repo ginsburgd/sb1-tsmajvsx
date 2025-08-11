@@ -123,6 +123,13 @@ export class LeagueEngine {
       },
       history: {
         weeks: []
+      },
+      metrics: {
+        total_battles: 0,
+        knockouts: args.players.reduce((acc: any, p: any) => {
+          acc[p.player_id] = 0;
+          return acc;
+        }, {})
       }
     };
 
@@ -265,6 +272,13 @@ export class LeagueEngine {
       // Update records
       winner.record.wins++;
       loser.record.losses++;
+
+      // Update league metrics
+      state.metrics.total_battles++;
+      state.metrics.knockouts[homePlayer.player_id] =
+        (state.metrics.knockouts[homePlayer.player_id] || 0) + battleResult.homeKOs;
+      state.metrics.knockouts[awayPlayer.player_id] =
+        (state.metrics.knockouts[awayPlayer.player_id] || 0) + battleResult.awayKOs;
 
       const result = {
         matchup_id: matchup.matchup_id,

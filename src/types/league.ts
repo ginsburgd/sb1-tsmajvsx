@@ -113,6 +113,10 @@ export interface LeagueState {
   history: {
     weeks: WeekResult[];
   };
+  metrics: {
+    total_battles: number;
+    knockouts: { [player_id: string]: number };
+  };
 }
 
 export interface Command {
