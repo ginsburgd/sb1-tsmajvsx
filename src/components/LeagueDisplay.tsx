@@ -303,7 +303,7 @@ function getTypeColor(type: string): string {
     Ice: 'from-cyan-400 to-cyan-500',
     Fighting: 'from-red-600 to-red-700',
     Poison: 'from-purple-500 to-purple-600',
-    Ground: 'from-yellow-600 to-brown-500',
+    Ground: 'from-yellow-600 to-yellow-700',
     Flying: 'from-indigo-400 to-sky-500',
     Psychic: 'from-pink-500 to-pink-600',
     Bug: 'from-lime-500 to-green-500',
