@@ -25,6 +25,7 @@ interface BattleTurn {
   critical: boolean;
   effectiveness: number;
   fainted: boolean;
+  missed?: boolean;
 }
 
 export class BattleSimulator {
@@ -273,8 +274,9 @@ export class BattleSimulator {
         move: move.type + ' move',
         damage: 0,
         critical: false,
-        effectiveness: 0,
-        fainted: false
+        effectiveness: 1,
+        fainted: false,
+        missed: true
       });
       return { fainted: false, damage: 0 };
     }
@@ -336,13 +338,17 @@ export class BattleSimulator {
   }
 
   private generateBattleSummary(): string {
-    const keyTurns = this.turns.filter(t => t.fainted || t.critical || t.effectiveness >= 2 || t.effectiveness <= 0.5);
+    const keyTurns = this.turns.filter(t => t.fainted || t.critical || t.effectiveness >= 2 || t.effectiveness <= 0.5 || t.missed);
     const summary = keyTurns.slice(0, 5).map(t => {
       let desc = `${t.attacker} used ${t.move} vs ${t.defender}`;
       if (t.critical) desc += ' (Critical Hit!)';
-      if (t.effectiveness >= 2) desc += ' (Super Effective!)';
-      if (t.effectiveness <= 0.5 && t.effectiveness > 0) desc += ' (Not Very Effective)';
-      if (t.effectiveness === 0) desc += ' (No Effect)';
+      if (t.missed) {
+        desc += ' (Missed)';
+      } else {
+        if (t.effectiveness >= 2) desc += ' (Super Effective!)';
+        if (t.effectiveness <= 0.5 && t.effectiveness > 0) desc += ' (Not Very Effective)';
+        if (t.effectiveness === 0) desc += ' (No Effect)';
+      }
       if (t.fainted) desc += ` - ${t.defender} fainted!`;
       return desc;
     });
