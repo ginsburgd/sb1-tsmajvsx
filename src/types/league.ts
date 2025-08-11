@@ -104,6 +104,7 @@ export interface LeagueState {
     };
     draft_order: string[];
     current_drafter: string | null;
+    draft_direction?: 1 | -1;
   };
   config: {
     team_size: number;
