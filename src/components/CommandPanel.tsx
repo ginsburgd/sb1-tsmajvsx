@@ -5,7 +5,7 @@ import { Play, Users, Calendar, Trophy, ArrowRightLeft, UserPlus, ListOrdered } 
 
 interface CommandPanelProps {
   onExecuteCommand: (command: Command) => void;
-  isLoading: boolean;
+  isLoading: boolean
   state: LeagueState | null;
 }
 
@@ -297,6 +297,8 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
                 Current Drafter:{' '}
                 {state.players.find(p => p.player_id === state.meta.current_drafter)?.team_name || state.meta.current_drafter}
               </p>
+
+              {/* UPDATED: input + availability-aware grid with disabled gray styling */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Pokémon</label>
                 <input
@@ -307,19 +309,30 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
+
               <div className="mt-4">
                 <h4 className="text-sm font-medium text-gray-700 mb-2">Available Pokémon</h4>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-48 overflow-y-auto">
-                  {allDraftPokemon.map((pokemon) => (
-                    <button
-                      key={pokemon}
-                      type="button"
-                      onClick={() => handleDraftPick(pokemon)}
-                      className={`flex items-center gap-2 p-2 rounded-lg border border-gray-200 hover:bg-gray-50 ${getColor(pokemon)}`}
-                    >
-                      <span className="font-medium text-sm text-white">{pokemon}</span>
-                    </button>
-                  ))}
+                  {allDraftPokemon.map((pokemon) => {
+                    const disabled = !state.free_agents.includes(pokemon);
+                    const colorClass = disabled
+                      ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                      : `${getColor(pokemon)} text-white hover:opacity-90`;
+
+                    return (
+                      <button
+                        key={pokemon}
+                        type="button"
+                        disabled={disabled}
+                        onClick={() => !disabled && handleDraftPick(pokemon)}
+                        className={`p-2 rounded-lg ${colorClass}`}
+                        aria-disabled={disabled}
+                        title={disabled ? 'Already selected' : `Draft ${pokemon}`}
+                      >
+                        <span className="font-medium text-sm">{pokemon}</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>
