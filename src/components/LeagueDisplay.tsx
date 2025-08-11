@@ -4,12 +4,11 @@ import { Trophy, Users, Calendar, Zap, Star, BarChart3 } from 'lucide-react';
 
 interface LeagueDisplayProps {
   state: LeagueState | null;
-  result: any;
   logs: string[];
   errors: string[];
 }
 
-export function LeagueDisplay({ state, result, logs, errors }: LeagueDisplayProps) {
+export function LeagueDisplay({ state, logs, errors }: LeagueDisplayProps) {
   if (!state) {
     return (
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8 text-center">

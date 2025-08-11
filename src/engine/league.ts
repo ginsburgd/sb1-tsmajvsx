@@ -1,4 +1,4 @@
-import { LeagueState, Command, EngineResponse, Player, WeekSchedule, Matchup, RosterPokemon } from '../types/league';
+import { LeagueState, Command, EngineResponse, WeekSchedule } from '../types/league';
 import { POKEMON_DATA, MOVE_DATA, TYPE_CHART } from '../data/pokemon';
 import { BattleSimulator } from './battle';
 import { generateSeed } from '../utils/crypto';
@@ -477,7 +477,7 @@ export class LeagueEngine {
 
     // Advance to next drafter
     const order = state.meta.draft_order;
-    let currentIndex = order.indexOf(args.player_id);
+    const currentIndex = order.indexOf(args.player_id);
     let nextIndex = currentIndex;
     let found = false;
     for (let i = 0; i < order.length; i++) {

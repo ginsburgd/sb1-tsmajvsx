@@ -11,7 +11,13 @@ interface CommandPanelProps {
 
 export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPanelProps) {
   const [activeTab, setActiveTab] = useState('init');
-  const [formData, setFormData] = useState<any>({});
+  const [formData, setFormData] = useState<Record<string, string>>({});
+  const [players, setPlayers] = useState([
+    { id: 'P1', name: 'Ash', team: 'Pikachamps' },
+    { id: 'P2', name: 'Misty', team: 'Cerulean Surge' },
+    { id: 'P3', name: 'Brock', team: 'Pewter Rocks' },
+    { id: 'P4', name: 'Gary', team: 'Pallet Rivals' }
+  ]);
 
   const tabs = [
     { id: 'init', label: 'Initialize', icon: Play },
@@ -25,12 +31,31 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
 
   const allDraftPokemon = useMemo(() => {
     if (!state) return [] as string[];
-    const drafted = state.players.flatMap(p =>
-      p.roster ? p.roster.map(r => r.pokemon_id) : []
-    );
+    const drafted = state.players.flatMap(p => (p.roster ? p.roster.map(r => r.pokemon_id) : []));
     const all = Array.from(new Set([...state.free_agents, ...drafted]));
     return all.sort();
   }, [state]);
+
+  const updateFormData = (key: string, value: string) => {
+    setFormData(prev => ({ ...prev, [key]: value }));
+  };
+
+  const addPlayerField = () => {
+    if (players.length >= 10) return;
+    const nextId = `P${players.length + 1}`;
+    setPlayers([...players, { id: nextId, name: '', team: '' }]);
+  };
+
+  const removePlayerField = () => {
+    if (players.length <= 2) return;
+    setPlayers(players.slice(0, -1));
+  };
+
+  const updatePlayer = (index: number, field: 'name' | 'team', value: string) => {
+    const next = [...players];
+    next[index] = { ...next[index], [field]: value };
+    setPlayers(next);
+  };
 
   const TYPE_COLORS: { [key: string]: string } = {
     Normal: 'bg-gray-400',
@@ -60,22 +85,20 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     let command: Command;
-    
     switch (activeTab) {
-      case 'init':
+      case 'init': {
         command = {
           command: 'INIT',
           args: {
             league_id: formData.leagueId || 'PFLL-001',
             season: parseInt(formData.season) || 1,
-            players: [
-              { player_id: 'P1', name: formData.player1Name || 'Ash', team_name: formData.team1Name || 'Pikachamps' },
-              { player_id: 'P2', name: formData.player2Name || 'Misty', team_name: formData.team2Name || 'Cerulean Surge' },
-              { player_id: 'P3', name: formData.player3Name || 'Brock', team_name: formData.team3Name || 'Pewter Rocks' },
-              { player_id: 'P4', name: formData.player4Name || 'Gary', team_name: formData.team4Name || 'Pallet Rivals' }
-            ],
+            players: players.map((p, i) => ({
+              player_id: p.id,
+              name: p.name || `Player ${i + 1}`,
+              team_name: p.team || `Team ${i + 1}`
+            })),
             free_agents: [
               'Venusaur', 'Charizard', 'Blastoise', 'Pikachu', 'Raichu', 'Gengar', 'Alakazam', 'Machamp', 'Dragonite',
               'Typhlosion', 'Feraligatr', 'Meganium', 'Ampharos', 'Skarmory',
@@ -85,8 +108,8 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
           }
         };
         break;
-
-      case 'draft':
+      }
+      case 'draft': {
         if (!state || !state.meta.current_drafter) {
           alert('No active draft');
           return;
@@ -103,9 +126,12 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
           }
         };
         break;
-
-      case 'register':
-        const roster = (formData.roster || '').split(',').map((p: string) => p.trim()).filter((p: string) => p);
+      }
+      case 'register': {
+        const roster = (formData.roster || '')
+          .split(',')
+          .map((p: string) => p.trim())
+          .filter((p: string) => p);
         if (roster.length !== 4) {
           alert('Please enter exactly 4 Pokémon names separated by commas');
           return;
@@ -113,160 +139,155 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
         command = {
           command: 'REGISTER_TEAM',
           args: {
-            player_id: formData.playerId || 'P1',
+            player_id: formData.playerId || state?.players[0]?.player_id,
             roster: roster.map((pokemon_id: string) => ({ pokemon_id, level: 50 }))
           }
         };
         break;
-      
-      case 'matchups':
-        command = {
-          command: 'SET_MATCHUPS',
-          args: {
-            week_number: parseInt(formData.weekNumber) || 1,
-            matchups: [
-              { matchup_id: 'w1m1', home_player_id: 'P1', away_player_id: 'P2' },
-              { matchup_id: 'w1m2', home_player_id: 'P3', away_player_id: 'P4' }
-            ]
+      }
+      case 'matchups': {
+        if (!state) {
+          alert('Initialize league first');
+          return;
+        }
+        const week = parseInt(formData.weekNumber) || 1;
+        const ids = state.players.map(p => p.player_id);
+        const matchups = [] as { matchup_id: string; home_player_id: string; away_player_id: string }[];
+        for (let i = 0; i < ids.length; i += 2) {
+          if (ids[i + 1]) {
+            matchups.push({ matchup_id: `w${week}m${i / 2 + 1}`, home_player_id: ids[i], away_player_id: ids[i + 1] });
           }
-        };
+        }
+        command = { command: 'SET_MATCHUPS', args: { week_number: week, matchups } };
         break;
-      
-      case 'run_week':
-        command = {
-          command: 'RUN_WEEK',
-          args: {
-            week_number: parseInt(formData.weekNumber) || 1
-          }
-        };
+      }
+      case 'run_week': {
+        command = { command: 'RUN_WEEK', args: { week_number: parseInt(formData.weekNumber) || 1 } };
         break;
-      
-      case 'trade':
+      }
+      case 'trade': {
         const send = (formData.send || '').split(',').map((p: string) => p.trim()).filter((p: string) => p);
         const receive = (formData.receive || '').split(',').map((p: string) => p.trim()).filter((p: string) => p);
         command = {
           command: 'TRADE',
           args: {
-            from_player_id: formData.fromPlayerId || 'P1',
-            to_player_id: formData.toPlayerId || 'P2',
+            from_player_id: formData.fromPlayerId || state?.players[0]?.player_id,
+            to_player_id: formData.toPlayerId || state?.players[1]?.player_id,
             send,
             receive
           }
         };
         break;
-      
-      case 'pickup':
+      }
+      case 'pickup': {
         const add = (formData.add || '').split(',').map((p: string) => p.trim()).filter((p: string) => p);
         const drop = (formData.drop || '').split(',').map((p: string) => p.trim()).filter((p: string) => p);
         command = {
           command: 'PICKUP',
           args: {
-            player_id: formData.playerId || 'P1',
+            player_id: formData.playerId || state?.players[0]?.player_id,
             add,
             drop
           }
         };
         break;
-      
+      }
       default:
         return;
     }
-    
-      onExecuteCommand(command);
-    };
+
+    onExecuteCommand(command);
+  };
 
   const handleDraftPick = (pokemon: string) => {
     if (!state || !state.meta.current_drafter) {
       alert('No active draft');
       return;
     }
-    const command: Command = {
+    onExecuteCommand({
       command: 'DRAFT_PICK',
-      args: {
-        player_id: state.meta.current_drafter,
-        pokemon_id: pokemon
-      }
-    };
-    onExecuteCommand(command);
-  };
-
-  const updateFormData = (key: string, value: any) => {
-    setFormData((prev: any) => ({ ...prev, [key]: value }));
+      args: { player_id: state.meta.current_drafter, pokemon_id: pokemon }
+    });
   };
 
   return (
     <div className="bg-white rounded-xl shadow-lg border border-gray-200">
       <div className="border-b border-gray-200">
-        <div className="flex overflow-x-auto">
-          {tabs.map((tab) => {
-            const Icon = tab.icon;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-6 py-4 font-medium transition-all whitespace-nowrap ${
-                  activeTab === tab.id
-                    ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                }`}
-              >
-                <Icon className="w-4 h-4" />
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
+        <nav className="flex" aria-label="Tabs">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`${
+                activeTab === tab.id
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              } flex-1 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm flex items-center justify-center gap-2`}
+            >
+              <tab.icon className="w-4 h-4" /> {tab.label}
+            </button>
+          ))}
+        </nav>
       </div>
-
       <div className="p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           {activeTab === 'init' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">League ID</label>
-                <input
-                  type="text"
-                  value={formData.leagueId || ''}
-                  onChange={(e) => updateFormData('leagueId', e.target.value)}
-                  placeholder="PFLL-001"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">League ID</label>
+                  <input
+                    type="text"
+                    value={formData.leagueId || ''}
+                    onChange={(e) => updateFormData('leagueId', e.target.value)}
+                    placeholder="PFLL-001"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Season</label>
+                  <input
+                    type="number"
+                    value={formData.season || ''}
+                    onChange={(e) => updateFormData('season', e.target.value)}
+                    placeholder="1"
+                    min="1"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Season</label>
-                <input
-                  type="number"
-                  value={formData.season || ''}
-                  onChange={(e) => updateFormData('season', e.target.value)}
-                  placeholder="1"
-                  min="1"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+              {players.map((p, idx) => (
+                <div key={p.id} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Player {i} Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Player {idx + 1} Name</label>
                     <input
                       type="text"
-                      value={formData[`player${i}Name`] || ''}
-                      onChange={(e) => updateFormData(`player${i}Name`, e.target.value)}
-                      placeholder={['Ash', 'Misty', 'Brock', 'Gary'][i-1]}
+                      value={p.name}
+                      onChange={(e) => updatePlayer(idx, 'name', e.target.value)}
+                      placeholder={`Player ${idx + 1}`}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Team {i} Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Team {idx + 1} Name</label>
                     <input
                       type="text"
-                      value={formData[`team${i}Name`] || ''}
-                      onChange={(e) => updateFormData(`team${i}Name`, e.target.value)}
-                      placeholder={['Pikachamps', 'Cerulean Surge', 'Pewter Rocks', 'Pallet Rivals'][i-1]}
+                      value={p.team}
+                      onChange={(e) => updatePlayer(idx, 'team', e.target.value)}
+                      placeholder={`Team ${idx + 1}`}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                   </div>
                 </div>
               ))}
+              <div className="flex gap-2">
+                <button type="button" onClick={addPlayerField} className="px-3 py-1 bg-green-500 text-white rounded">
+                  Add Player
+                </button>
+                <button type="button" onClick={removePlayerField} className="px-3 py-1 bg-red-500 text-white rounded">
+                  Remove Player
+                </button>
+              </div>
             </div>
           )}
 
@@ -274,48 +295,49 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
             <div className="space-y-4">
               <p className="text-sm text-gray-600">
                 Current Drafter:{' '}
-                {state.players.find(p => p.player_id === state.meta.current_drafter)?.team_name ||
-                  state.meta.current_drafter}
+                {state.players.find(p => p.player_id === state.meta.current_drafter)?.team_name || state.meta.current_drafter}
               </p>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Select Pokémon</label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 max-h-64 overflow-y-auto">
-                  {allDraftPokemon.map((pokemon) => {
-                    const disabled = !state.free_agents.includes(pokemon);
-                    const colorClass = disabled
-                      ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                      : `${getColor(pokemon)} text-white hover:opacity-90`;
-                    return (
-                      <button
-                        key={pokemon}
-                        type="button"
-                        disabled={disabled}
-                        onClick={() => handleDraftPick(pokemon)}
-                        className={`px-2 py-1 rounded ${colorClass}`}
-                      >
-                        {pokemon}
-                      </button>
-                    );
-                  })}
+                <label className="block text-sm font-medium text-gray-700 mb-2">Pokémon</label>
+                <input
+                  type="text"
+                  value={formData.pokemon || ''}
+                  onChange={(e) => updateFormData('pokemon', e.target.value)}
+                  placeholder="Charizard"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <div className="mt-4">
+                <h4 className="text-sm font-medium text-gray-700 mb-2">Available Pokémon</h4>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-48 overflow-y-auto">
+                  {allDraftPokemon.map((pokemon) => (
+                    <button
+                      key={pokemon}
+                      type="button"
+                      onClick={() => handleDraftPick(pokemon)}
+                      className={`flex items-center gap-2 p-2 rounded-lg border border-gray-200 hover:bg-gray-50 ${getColor(pokemon)}`}
+                    >
+                      <span className="font-medium text-sm text-white">{pokemon}</span>
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
           )}
 
-          {activeTab === 'register' && (
+          {activeTab === 'register' && state && (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Player ID</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Player</label>
                 <select
                   value={formData.playerId || ''}
                   onChange={(e) => updateFormData('playerId', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   <option value="">Select Player</option>
-                  <option value="P1">P1</option>
-                  <option value="P2">P2</option>
-                  <option value="P3">P3</option>
-                  <option value="P4">P4</option>
+                  {state.players.map(p => (
+                    <option key={p.player_id} value={p.player_id}>{p.name}</option>
+                  ))}
                 </select>
               </div>
               <div>
@@ -327,12 +349,11 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
                   rows={3}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
-                <p className="text-sm text-gray-500 mt-1">Available: Charizard, Blastoise, Venusaur, Pikachu, Gengar, Dragonite, Sceptile, Blaziken, Swampert, etc.</p>
               </div>
             </div>
           )}
 
-          {activeTab === 'matchups' && (
+          {activeTab === 'matchups' && state && (
             <div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Week Number</label>
@@ -346,7 +367,7 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
                 />
               </div>
               <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-600">Default matchups will be set: P1 vs P2, P3 vs P4</p>
+                <p className="text-sm text-gray-600">Default matchups will pair players sequentially.</p>
               </div>
             </div>
           )}
@@ -370,7 +391,7 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
             </div>
           )}
 
-          {activeTab === 'trade' && (
+          {activeTab === 'trade' && state && (
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -381,10 +402,9 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   >
                     <option value="">Select Player</option>
-                    <option value="P1">P1</option>
-                    <option value="P2">P2</option>
-                    <option value="P3">P3</option>
-                    <option value="P4">P4</option>
+                    {state.players.map(p => (
+                      <option key={p.player_id} value={p.player_id}>{p.name}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
@@ -395,10 +415,9 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   >
                     <option value="">Select Player</option>
-                    <option value="P1">P1</option>
-                    <option value="P2">P2</option>
-                    <option value="P3">P3</option>
-                    <option value="P4">P4</option>
+                    {state.players.map(p => (
+                      <option key={p.player_id} value={p.player_id}>{p.name}</option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -425,20 +444,19 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
             </div>
           )}
 
-          {activeTab === 'pickup' && (
+          {activeTab === 'pickup' && state && (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Player ID</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Player</label>
                 <select
                   value={formData.playerId || ''}
                   onChange={(e) => updateFormData('playerId', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   <option value="">Select Player</option>
-                  <option value="P1">P1</option>
-                  <option value="P2">P2</option>
-                  <option value="P3">P3</option>
-                  <option value="P4">P4</option>
+                  {state.players.map(p => (
+                    <option key={p.player_id} value={p.player_id}>{p.name}</option>
+                  ))}
                 </select>
               </div>
               <div>

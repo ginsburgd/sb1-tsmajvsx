@@ -117,13 +117,13 @@ export interface LeagueState {
 
 export interface Command {
   command: string;
-  args: any;
+  args: Record<string, unknown>;
   league_state?: LeagueState;
 }
 
 export interface EngineResponse {
   league_state: LeagueState;
-  result: any;
+  result: unknown;
   logs: string[];
   errors: string[];
 }
