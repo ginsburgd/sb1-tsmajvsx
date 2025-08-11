@@ -7,14 +7,14 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     gen: 1,
     types: ['Grass', 'Poison'],
     base_stats: { hp: 45, atk: 49, def: 49, spa: 65, spd: 65, spe: 45 },
-    default_moves: ['Vine Whip', 'Tackle', 'Poison Powder', 'Sleep Powder']
+    default_moves: ['Vine Whip', 'Leech Seed', 'Poison Powder', 'Sleep Powder']
   },
   Ivysaur: {
     name: 'Ivysaur',
     gen: 1,
     types: ['Grass', 'Poison'],
     base_stats: { hp: 60, atk: 62, def: 63, spa: 80, spd: 80, spe: 60 },
-    default_moves: ['Razor Leaf', 'Tackle', 'Poison Powder', 'Sleep Powder']
+    default_moves: ['Razor Leaf', 'Leech Seed', 'Poison Powder', 'Sleep Powder']
   },
   Venusaur: {
     name: 'Venusaur',
@@ -49,7 +49,7 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     gen: 1,
     types: ['Water'],
     base_stats: { hp: 44, atk: 48, def: 65, spa: 50, spd: 64, spe: 43 },
-    default_moves: ['Water Gun', 'Tackle', 'Tail Whip', 'Withdraw']
+    default_moves: ['Water Gun', 'Bubble', 'Bite', 'Withdraw']
   },
   Wartortle: {
     name: 'Wartortle',
@@ -207,6 +207,7 @@ export const MOVE_DATA: { [key: string]: Move } = {
   'Eruption': { type: 'Fire', category: 'Special', power: 150, accuracy: 1.0, priority: 0, stab_applicable: true },
   'Blaze Kick': { type: 'Fire', category: 'Physical', power: 85, accuracy: 0.9, priority: 0, stab_applicable: true },
   'Water Gun': { type: 'Water', category: 'Special', power: 40, accuracy: 1.0, priority: 0, stab_applicable: true },
+  'Bubble': { type: 'Water', category: 'Special', power: 40, accuracy: 1.0, priority: 0, stab_applicable: true },
   'Water Pulse': { type: 'Water', category: 'Special', power: 60, accuracy: 1.0, priority: 0, stab_applicable: true },
   'Surf': { type: 'Water', category: 'Special', power: 90, accuracy: 1.0, priority: 0, stab_applicable: true },
   'Hydro Pump': { type: 'Water', category: 'Special', power: 110, accuracy: 0.8, priority: 0, stab_applicable: true },
@@ -240,6 +241,7 @@ export const MOVE_DATA: { [key: string]: Move } = {
   // Status moves
   'Poison Powder': { type: 'Poison', category: 'Status', power: 0, accuracy: 0.75, priority: 0, stab_applicable: false },
   'Sleep Powder': { type: 'Grass', category: 'Status', power: 0, accuracy: 0.75, priority: 0, stab_applicable: false },
+  'Leech Seed': { type: 'Grass', category: 'Status', power: 0, accuracy: 0.9, priority: 0, stab_applicable: false },
   'Thunder Wave': { type: 'Electric', category: 'Status', power: 0, accuracy: 0.9, priority: 0, stab_applicable: false },
   'Toxic': { type: 'Poison', category: 'Status', power: 0, accuracy: 0.9, priority: 0, stab_applicable: false },
   'Growl': { type: 'Normal', category: 'Status', power: 0, accuracy: 1.0, priority: 0, stab_applicable: false },
