@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CommandPanel } from './components/CommandPanel';
 import { LeagueDisplay } from './components/LeagueDisplay';
 import { PokemonStats } from './components/PokemonStats';
+import { StatsDashboard } from './components/StatsDashboard';
 import { LeagueEngine } from './engine/league';
 import { Command, LeagueState, EngineResponse } from './types/league';
 import { Zap, Github } from 'lucide-react';
@@ -11,7 +12,7 @@ function App() {
   const [lastLogs, setLastLogs] = useState<string[]>([]);
   const [lastErrors, setLastErrors] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [view, setView] = useState<'league' | 'pokedex'>('league');
+  const [view, setView] = useState<'league' | 'pokedex' | 'stats'>('league');
 
   const engine = new LeagueEngine();
 
@@ -94,6 +95,12 @@ function App() {
                   className={`px-3 py-2 rounded-lg text-sm font-medium ${view === 'pokedex' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'}`}
                 >
                   Pokédex
+                </button>
+                <button
+                  onClick={() => setView('stats')}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium ${view === 'stats' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+                >
+                  Stats
                 </button>
               </nav>
               <a
@@ -181,8 +188,10 @@ function App() {
               </div>
             </div>
           </>
-        ) : (
+        ) : view === 'pokedex' ? (
           <PokemonStats />
+        ) : (
+          <StatsDashboard state={leagueState} />
         )}
       </main>
 
