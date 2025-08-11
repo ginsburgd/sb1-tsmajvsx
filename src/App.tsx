@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CommandPanel } from './components/CommandPanel';
 import { LeagueDisplay } from './components/LeagueDisplay';
 import { LeagueEngine } from './engine/league';
@@ -7,7 +7,7 @@ import { Zap, Github } from 'lucide-react';
 
 function App() {
   const [leagueState, setLeagueState] = useState<LeagueState | null>(null);
-  const [lastResult, setLastResult] = useState<any>(null);
+  const [lastResult, setLastResult] = useState<unknown>(null);
   const [lastLogs, setLastLogs] = useState<string[]>([]);
   const [lastErrors, setLastErrors] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -16,20 +16,29 @@ function App() {
 
   const handleExecuteCommand = async (command: Command) => {
     setIsLoading(true);
-    
+
     try {
-      // Add current league state to command if it exists
       const commandWithState = {
         ...command,
         league_state: leagueState || undefined
       };
-      
-      const response: EngineResponse = engine.processCommand(commandWithState);
-      
+
+      const response: EngineResponse = await engine.processCommand(commandWithState);
+
       setLeagueState(response.league_state);
       setLastResult(response.result);
       setLastLogs(response.logs);
       setLastErrors(response.errors);
+
+      try {
+        await fetch('http://localhost:3000/league', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(response.league_state)
+        });
+      } catch (err) {
+        console.error('Failed to persist league state', err);
+      }
     } catch (error) {
       setLastErrors([`Failed to execute command: ${error instanceof Error ? error.message : String(error)}`]);
       setLastLogs([]);
@@ -38,6 +47,23 @@ function App() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const loadState = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/league');
+        if (res.ok) {
+          const data: LeagueState = await res.json();
+          if (data && Object.keys(data).length > 0) {
+            setLeagueState(data);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load league state', err);
+      }
+    };
+    loadState();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
