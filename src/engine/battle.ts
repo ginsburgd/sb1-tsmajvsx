@@ -43,6 +43,8 @@ export class BattleSimulator {
     homeKOs: number;
     awayKOs: number;
     turns: BattleTurn[];
+    homeStats: { [pokemon_id: string]: { kos: number; damage: number; faints: number } };
+    awayStats: { [pokemon_id: string]: { kos: number; damage: number; faints: number } };
   } {
     const homePokemon = homeTeam.map(p => this.initializeBattlePokemon(p));
     const awayPokemon = awayTeam.map(p => this.initializeBattlePokemon(p));
@@ -51,6 +53,16 @@ export class BattleSimulator {
     let awayIndex = 0;
     let turnNumber = 1;
     this.turns = [];
+
+    const homeStats: { [pokemon_id: string]: { kos: number; damage: number; faints: number } } = {};
+    const awayStats: { [pokemon_id: string]: { kos: number; damage: number; faints: number } } = {};
+
+    for (const p of homeTeam) {
+      homeStats[p.pokemon_id] = { kos: 0, damage: 0, faints: 0 };
+    }
+    for (const p of awayTeam) {
+      awayStats[p.pokemon_id] = { kos: 0, damage: 0, faints: 0 };
+    }
 
     while (homeIndex < homePokemon.length && awayIndex < awayPokemon.length) {
       const homeMon = homePokemon[homeIndex];
@@ -77,15 +89,26 @@ export class BattleSimulator {
       }
 
       // Execute first attack
-      if (this.executeTurn(
+      const firstResult = this.executeTurn(
         firstAttacker === 'home' ? homeMon : awayMon,
         firstAttacker === 'away' ? homeMon : awayMon,
         firstMove,
         turnNumber,
         firstAttacker === 'home' ? homePokemon[homeIndex].pokemon.name : awayPokemon[awayIndex].pokemon.name,
         firstAttacker === 'away' ? homePokemon[homeIndex].pokemon.name : awayPokemon[awayIndex].pokemon.name
-      )) {
-        // Defender fainted
+      );
+
+      const firstAttackerStats = firstAttacker === 'home'
+        ? homeStats[homeTeam[homeIndex].pokemon_id]
+        : awayStats[awayTeam[awayIndex].pokemon_id];
+      const firstDefenderStats = firstAttacker === 'home'
+        ? awayStats[awayTeam[awayIndex].pokemon_id]
+        : homeStats[homeTeam[homeIndex].pokemon_id];
+
+      firstAttackerStats.damage += firstResult.damage;
+      if (firstResult.fainted) {
+        firstAttackerStats.kos += 1;
+        firstDefenderStats.faints += 1;
         if (firstAttacker === 'home') {
           awayIndex++;
         } else {
@@ -96,15 +119,26 @@ export class BattleSimulator {
       }
 
       // Execute second attack if defender didn't faint
-      if (this.executeTurn(
+      const secondResult = this.executeTurn(
         secondAttacker === 'home' ? homeMon : awayMon,
         secondAttacker === 'away' ? homeMon : awayMon,
         secondMove,
         turnNumber,
         secondAttacker === 'home' ? homePokemon[homeIndex].pokemon.name : awayPokemon[awayIndex].pokemon.name,
         secondAttacker === 'away' ? homePokemon[homeIndex].pokemon.name : awayPokemon[awayIndex].pokemon.name
-      )) {
-        // Defender fainted
+      );
+
+      const secondAttackerStats = secondAttacker === 'home'
+        ? homeStats[homeTeam[homeIndex].pokemon_id]
+        : awayStats[awayTeam[awayIndex].pokemon_id];
+      const secondDefenderStats = secondAttacker === 'home'
+        ? awayStats[awayTeam[awayIndex].pokemon_id]
+        : homeStats[homeTeam[homeIndex].pokemon_id];
+
+      secondAttackerStats.damage += secondResult.damage;
+      if (secondResult.fainted) {
+        secondAttackerStats.kos += 1;
+        secondDefenderStats.faints += 1;
         if (secondAttacker === 'home') {
           awayIndex++;
         } else {
@@ -124,7 +158,9 @@ export class BattleSimulator {
       summary: this.generateBattleSummary(),
       homeKOs,
       awayKOs,
-      turns: this.turns
+      turns: this.turns,
+      homeStats,
+      awayStats
     };
   }
 
@@ -219,7 +255,7 @@ export class BattleSimulator {
     return damage;
   }
 
-  private executeTurn(attacker: BattlePokemon, defender: BattlePokemon, move: Move, turnNumber: number, attackerName: string, defenderName: string): boolean {
+  private executeTurn(attacker: BattlePokemon, defender: BattlePokemon, move: Move, turnNumber: number, attackerName: string, defenderName: string): { fainted: boolean; damage: number } {
     // Check if move hits
     if (!this.rng.bool(move.accuracy)) {
       this.turns.push({
@@ -232,12 +268,12 @@ export class BattleSimulator {
         effectiveness: 0,
         fainted: false
       });
-      return false;
+      return { fainted: false, damage: 0 };
     }
 
     if (move.category === 'Status') {
       // For simplicity, status moves do nothing in this implementation
-      return false;
+      return { fainted: false, damage: 0 };
     }
 
     // Calculate damage
@@ -287,8 +323,8 @@ export class BattleSimulator {
       effectiveness,
       fainted
     });
-    
-    return fainted;
+
+    return { fainted, damage };
   }
 
   private generateBattleSummary(): string {

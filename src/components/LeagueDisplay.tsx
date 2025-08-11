@@ -1,6 +1,6 @@
 import React from 'react';
 import { LeagueState } from '../types/league';
-import { Trophy, Users, Calendar, Zap, Star } from 'lucide-react';
+import { Trophy, Users, Calendar, Zap, Star, BarChart3 } from 'lucide-react';
 
 interface LeagueDisplayProps {
   state: LeagueState | null;
@@ -21,6 +21,26 @@ export function LeagueDisplay({ state, result, logs, errors }: LeagueDisplayProp
       </div>
     );
   }
+  const koLeaders = (() => {
+    const aggregate: { [key: string]: { playerId: string; pokemonId: string; kos: number; damage: number; faints: number } } = {};
+    for (const week of state.history.weeks) {
+      for (const result of week.results) {
+        if (!result.pokemon_stats) continue;
+        for (const [playerId, monStats] of Object.entries(result.pokemon_stats)) {
+          for (const [pokemonId, stats] of Object.entries(monStats)) {
+            const key = `${playerId}:${pokemonId}`;
+            if (!aggregate[key]) {
+              aggregate[key] = { playerId, pokemonId, kos: 0, damage: 0, faints: 0 };
+            }
+            aggregate[key].kos += stats.kos;
+            aggregate[key].damage += stats.damage;
+            aggregate[key].faints += stats.faints;
+          }
+        }
+      }
+    }
+    return Object.values(aggregate).sort((a, b) => b.kos - a.kos).slice(0, 5);
+  })();
 
   return (
     <div className="space-y-6">
@@ -154,6 +174,46 @@ export function LeagueDisplay({ state, result, logs, errors }: LeagueDisplayProp
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* Season Leaders */}
+      {koLeaders.length > 0 && (
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200">
+          <div className="border-b border-gray-200 p-6">
+            <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+              <BarChart3 className="w-5 h-5" />
+              Season KO Leaders
+            </h3>
+          </div>
+          <div className="p-6 overflow-x-auto">
+            <table className="min-w-full text-left text-sm">
+              <thead>
+                <tr className="text-gray-700">
+                  <th className="pb-2">Pokémon</th>
+                  <th className="pb-2">Team</th>
+                  <th className="pb-2 text-right">KOs</th>
+                  <th className="pb-2 text-right">Damage</th>
+                  <th className="pb-2 text-right">Faints</th>
+                </tr>
+              </thead>
+              <tbody>
+                {koLeaders.map((entry) => {
+                  const player = state.players.find(p => p.player_id === entry.playerId);
+                  const pokemon = state.pokedex.pokemon[entry.pokemonId];
+                  return (
+                    <tr key={`${entry.playerId}-${entry.pokemonId}`} className="border-t border-gray-200">
+                      <td className="py-1">{pokemon?.name || entry.pokemonId}</td>
+                      <td className="py-1">{player?.team_name || entry.playerId}</td>
+                      <td className="py-1 text-right font-mono">{entry.kos}</td>
+                      <td className="py-1 text-right font-mono">{entry.damage}</td>
+                      <td className="py-1 text-right font-mono">{entry.faints}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
         </div>
       )}
