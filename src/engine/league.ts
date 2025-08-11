@@ -40,7 +40,10 @@ export class LeagueEngine {
           try {
             await fetch('http://localhost:3000/league', {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+              },
               body: JSON.stringify(state)
             });
             result = { message: 'League state saved' };
@@ -51,7 +54,9 @@ export class LeagueEngine {
           break;
         case 'LOAD':
           try {
-            const response = await fetch('http://localhost:3000/league');
+            const response = await fetch('http://localhost:3000/league', {
+              headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            });
             if (response.ok) {
               state = await response.json();
               result = { message: 'League state loaded' };
