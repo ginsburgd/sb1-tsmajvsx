@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { CommandPanel } from './components/CommandPanel';
 import { LeagueDisplay } from './components/LeagueDisplay';
 import { PokemonStats } from './components/PokemonStats';
-import { AuthForm } from './components/AuthForm';
 import { LeagueEngine } from './engine/league';
 import { Command, LeagueState, EngineResponse } from './types/league';
 import { Zap, Github } from 'lucide-react';
@@ -13,19 +12,8 @@ function App() {
   const [lastErrors, setLastErrors] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [view, setView] = useState<'league' | 'pokedex'>('league');
-  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
 
   const engine = new LeagueEngine();
-
-  const handleAuth = (t: string) => {
-    setToken(t);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setToken(null);
-    setLeagueState(null);
-  };
 
   const handleExecuteCommand = async (command: Command) => {
     setIsLoading(true);
@@ -45,10 +33,7 @@ function App() {
       try {
         await fetch('http://localhost:3000/league', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(response.league_state)
         });
       } catch (err) {
@@ -63,12 +48,9 @@ function App() {
   };
 
   useEffect(() => {
-    if (!token) return;
     const loadState = async () => {
       try {
-        const res = await fetch('http://localhost:3000/league', {
-          headers: { Authorization: `Bearer ${token}` }
-        });
+        const res = await fetch('http://localhost:3000/league');
         if (res.ok) {
           const data: LeagueState = await res.json();
           if (data && Object.keys(data).length > 0) {
@@ -80,15 +62,7 @@ function App() {
       }
     };
     loadState();
-  }, [token]);
-
-  if (!token) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-        <AuthForm onAuth={handleAuth} />
-      </div>
-    );
-  }
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
@@ -130,12 +104,6 @@ function App() {
               >
                 <Github className="w-6 h-6" />
               </a>
-              <button
-                onClick={handleLogout}
-                className="text-gray-600 text-sm hover:text-gray-900"
-              >
-                Logout
-              </button>
             </div>
           </div>
         </div>
