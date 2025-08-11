@@ -164,11 +164,19 @@ export class BattleSimulator {
     };
   }
 
+  /**
+   * Converts a roster entry into a battle-ready Pokémon.
+   *
+   * Stats scale with the Pokémon's level using simplified Pokémon formulas:
+   * HP  = floor(((2 * base_stat.hp * level) / 100) + level + 10)
+   * Other stats = floor(((2 * base_stat * level) / 100) + 5)
+   * This means higher levels yield proportionally stronger stats.
+   */
   private initializeBattlePokemon(roster: RosterPokemon): BattlePokemon {
     const pokemon = this.state.pokedex.pokemon[roster.pokemon_id];
     const level = roster.level;
-    
-    // Calculate stats at level 50
+
+    // Calculate stats based on the Pokémon's roster level
     const hp = Math.floor(((2 * pokemon.base_stats.hp * level) / 100) + level + 10);
     const stats = {
       atk: Math.floor(((2 * pokemon.base_stats.atk * level) / 100) + 5),
