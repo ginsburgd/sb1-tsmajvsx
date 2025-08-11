@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { CommandPanel } from './components/CommandPanel';
 import { LeagueDisplay } from './components/LeagueDisplay';
+import { PokemonStats } from './components/PokemonStats';
 import { LeagueEngine } from './engine/league';
 import { Command, LeagueState, EngineResponse } from './types/league';
 import { Zap, Github } from 'lucide-react';
 
 function App() {
   const [leagueState, setLeagueState] = useState<LeagueState | null>(null);
-  const [lastResult, setLastResult] = useState<unknown>(null);
   const [lastLogs, setLastLogs] = useState<string[]>([]);
   const [lastErrors, setLastErrors] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [view, setView] = useState<'league' | 'pokedex'>('league');
 
   const engine = new LeagueEngine();
 
@@ -26,7 +27,6 @@ function App() {
       const response: EngineResponse = await engine.processCommand(commandWithState);
 
       setLeagueState(response.league_state);
-      setLastResult(response.result);
       setLastLogs(response.logs);
       setLastErrors(response.errors);
 
@@ -42,7 +42,6 @@ function App() {
     } catch (error) {
       setLastErrors([`Failed to execute command: ${error instanceof Error ? error.message : String(error)}`]);
       setLastLogs([]);
-      setLastResult(null);
     } finally {
       setIsLoading(false);
     }
@@ -83,6 +82,20 @@ function App() {
               </div>
             </div>
             <div className="flex items-center gap-4">
+              <nav className="flex gap-2">
+                <button
+                  onClick={() => setView('league')}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium ${view === 'league' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+                >
+                  League
+                </button>
+                <button
+                  onClick={() => setView('pokedex')}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium ${view === 'pokedex' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+                >
+                  Pokédex
+                </button>
+              </nav>
               <a
                 href="https://github.com"
                 className="text-gray-600 hover:text-gray-900 transition-colors"
@@ -98,118 +111,79 @@ function App() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Command Panel */}
-          <div className="space-y-6">
-            <div className="text-center lg:text-left">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">League Management</h2>
-              <p className="text-gray-600">Execute commands to manage your Pokémon Fantasy League</p>
-            </div>
-            <CommandPanel onExecuteCommand={handleExecuteCommand} isLoading={isLoading} state={leagueState} />
-          </div>
-
-          {/* League Display */}
-          <div className="space-y-6">
-            <div className="text-center lg:text-left">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">League Status</h2>
-              <p className="text-gray-600">Current league state and recent activity</p>
-            </div>
-            <LeagueDisplay 
-              state={leagueState}
-              result={lastResult}
-              logs={lastLogs}
-              errors={lastErrors}
-            />
-          </div>
-        </div>
-
-        {/* Features */}
-        <div className="mt-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">League Features</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Experience the ultimate Pokémon fantasy league with deterministic battles, persistent state, and comprehensive team management.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: '⚔️',
-                title: 'Turn-based Battles',
-                description: 'Authentic Pokémon battles with type effectiveness, STAB, and critical hits'
-              },
-              {
-                icon: '🎲',
-                title: 'Deterministic RNG',
-                description: 'Reproducible results using seeded random number generation'
-              },
-              {
-                icon: '📊',
-                title: 'Team Management',
-                description: 'Draft teams, make trades, and pick up free agents'
-              },
-              {
-                icon: '🏆',
-                title: 'Season Tracking',
-                description: 'Complete win/loss records and historical battle results'
-              },
-              {
-                icon: '🔄',
-                title: 'Persistent State',
-                description: 'Full league state saved as JSON for continued play'
-              },
-              {
-                icon: '⚡',
-                title: 'Gen 1-3 Only',
-                description: 'Classic Pokémon with official base stats and movesets'
-              }
-            ].map((feature, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-shadow">
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Quick Start Guide */}
-        <div className="mt-16 bg-white rounded-xl shadow-lg border border-gray-200 p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Quick Start Guide</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                step: '1',
-                title: 'Initialize League',
-                description: 'Create your league with players and free agents'
-              },
-              {
-                step: '2',
-                title: 'Register Teams',
-                description: 'Each player drafts 4 Pokémon for their roster'
-              },
-              {
-                step: '3',
-                title: 'Set Matchups',
-                description: 'Configure weekly head-to-head matchups'
-              },
-              {
-                step: '4',
-                title: 'Run Battles',
-                description: 'Simulate battles and track results'
-              }
-            ].map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">
-                  {step.step}
+        {view === 'league' ? (
+          <>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Command Panel */}
+              <div className="space-y-6">
+                <div className="text-center lg:text-left">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">League Management</h2>
+                  <p className="text-gray-600">Execute commands to manage your Pokémon Fantasy League</p>
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">{step.title}</h3>
-                <p className="text-gray-600 text-sm">{step.description}</p>
+                <CommandPanel onExecuteCommand={handleExecuteCommand} isLoading={isLoading} state={leagueState} />
               </div>
-            ))}
-          </div>
-        </div>
+
+              {/* League Display */}
+              <div className="space-y-6">
+                <div className="text-center lg:text-left">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">League Status</h2>
+                  <p className="text-gray-600">Current league state and recent activity</p>
+                </div>
+                <LeagueDisplay state={leagueState} logs={lastLogs} errors={lastErrors} />
+              </div>
+            </div>
+
+            {/* Features */}
+            <div className="mt-16">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">League Features</h2>
+                <p className="text-gray-600 max-w-2xl mx-auto">
+                  Experience the ultimate Pokémon fantasy league with deterministic battles, persistent state, and comprehensive team management.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[
+                  { icon: '⚔️', title: 'Turn-based Battles', description: 'Authentic Pokémon battles with type effectiveness, STAB, and critical hits' },
+                  { icon: '🎲', title: 'Deterministic RNG', description: 'Reproducible results using seeded random number generation' },
+                  { icon: '📊', title: 'Team Management', description: 'Draft teams, make trades, and pick up free agents' },
+                  { icon: '🏆', title: 'Season Tracking', description: 'Complete win/loss records and historical battle results' },
+                  { icon: '🔄', title: 'Persistent State', description: 'Full league state saved as JSON for continued play' },
+                  { icon: '⚡', title: 'Gen 1-3 Only', description: 'Classic Pokémon with official base stats and movesets' }
+                ].map((feature, index) => (
+                  <div key={index} className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-shadow">
+                    <div className="text-4xl mb-4">{feature.icon}</div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
+                    <p className="text-gray-600">{feature.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Start Guide */}
+            <div className="mt-16 bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Quick Start Guide</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { step: '1', title: 'Initialize League', description: 'Create your league with players and free agents' },
+                  { step: '2', title: 'Register Teams', description: 'Each player drafts 4 Pokémon for their roster' },
+                  { step: '3', title: 'Set Matchups', description: 'Configure weekly head-to-head matchups' },
+                  { step: '4', title: 'Run Battles', description: 'Simulate battles and track results' }
+                ].map((step, index) => (
+                  <div key={index} className="text-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">
+                      {step.step}
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-2">{step.title}</h3>
+                    <p className="text-gray-600 text-sm">{step.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <PokemonStats />
+        )}
       </main>
 
       {/* Footer */}
