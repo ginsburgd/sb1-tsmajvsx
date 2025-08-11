@@ -251,6 +251,10 @@ export class LeagueEngine {
           [homePlayer.player_id]: battleResult.homeKOs,
           [awayPlayer.player_id]: battleResult.awayKOs
         },
+        pokemon_stats: {
+          [homePlayer.player_id]: battleResult.homeStats,
+          [awayPlayer.player_id]: battleResult.awayStats
+        },
         seed_used: seed
       };
 

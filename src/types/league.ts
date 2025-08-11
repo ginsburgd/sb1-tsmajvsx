@@ -57,6 +57,15 @@ export interface BattleResult {
   loser: string;
   battle_summary: string;
   knockouts: { [player_id: string]: number };
+  pokemon_stats: {
+    [player_id: string]: {
+      [pokemon_id: string]: {
+        kos: number;
+        damage: number;
+        faints: number;
+      };
+    };
+  };
   seed_used: string;
 }
 
