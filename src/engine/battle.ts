@@ -158,33 +158,28 @@ export class BattleSimulator {
   }
 
   private selectBestMove(attacker: BattlePokemon, defender: BattlePokemon): Move {
-    if (this.state.config.battle.use_status_moves === false) {
-      // Filter out status moves
-      const damageMovesIndex = attacker.moves
-        .map((move, index) => ({ move, index }))
-        .filter(({ move }) => move.category !== 'Status');
-      
-      if (damageMovesIndex.length === 0) {
-        return this.state.pokedex.moves['Struggle'];
-      }
+    // Determine which moves are available based on whether status moves are allowed
+    const availableMoves = this.state.config.battle.use_status_moves
+      ? attacker.moves
+      : attacker.moves.filter(m => m.category !== 'Status');
 
-      // Calculate expected damage for each move
-      let bestMove = damageMovesIndex[0].move;
-      let bestDamage = 0;
-
-      for (const { move } of damageMovesIndex) {
-        const expectedDamage = this.calculateExpectedDamage(attacker, defender, move);
-        if (expectedDamage > bestDamage) {
-          bestDamage = expectedDamage;
-          bestMove = move;
-        }
-      }
-
-      return bestMove;
+    if (availableMoves.length === 0) {
+      return this.state.pokedex.moves['Struggle'];
     }
 
-    // For now, always pick the first damaging move if status moves are disabled
-    return attacker.moves.find(m => m.category !== 'Status') || this.state.pokedex.moves['Struggle'];
+    // Choose the move that yields the highest expected damage
+    let bestMove = availableMoves[0];
+    let bestDamage = this.calculateExpectedDamage(attacker, defender, bestMove);
+
+    for (const move of availableMoves.slice(1)) {
+      const expectedDamage = this.calculateExpectedDamage(attacker, defender, move);
+      if (expectedDamage > bestDamage) {
+        bestDamage = expectedDamage;
+        bestMove = move;
+      }
+    }
+
+    return bestMove;
   }
 
   private calculateExpectedDamage(attacker: BattlePokemon, defender: BattlePokemon, move: Move): number {
