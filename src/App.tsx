@@ -79,7 +79,7 @@ function App() {
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Pokémon Fantasy League
                 </h1>
-                <p className="text-gray-600 text-sm">Turn-based battles with Gen 1-3 Pokémon</p>
+                <p className="text-gray-600 text-sm">Turn-based battles with 151 Gen 1 Pokémon</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -156,7 +156,7 @@ function App() {
                   { icon: '📊', title: 'Team Management', description: 'Draft teams, make trades, and pick up free agents' },
                   { icon: '🏆', title: 'Season Tracking', description: 'Complete win/loss records and historical battle results' },
                   { icon: '🔄', title: 'Persistent State', description: 'Full league state saved as JSON for continued play' },
-                  { icon: '⚡', title: 'Gen 1-3 Only', description: 'Classic Pokémon with official base stats and movesets' }
+                  { icon: '⚡', title: 'Gen 1 Only', description: 'Classic Pokémon with official base stats and movesets' }
                 ].map((feature, index) => (
                   <div key={index} className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-shadow">
                     <div className="text-4xl mb-4">{feature.icon}</div>

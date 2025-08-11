@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Command, LeagueState } from '../types/league';
 import { POKEMON_DATA } from '../data/pokemon';
-import { Play, Users, Calendar, Trophy, ArrowRightLeft, UserPlus, ListOrdered } from 'lucide-react';
+import { Play, Calendar, Trophy, ArrowRightLeft, UserPlus, ListOrdered } from 'lucide-react';
 
 interface CommandPanelProps {
   onExecuteCommand: (command: Command) => void;
@@ -22,7 +22,6 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
   const tabs = [
     { id: 'init', label: 'Initialize', icon: Play },
     { id: 'draft', label: 'Draft', icon: ListOrdered },
-    { id: 'register', label: 'Register Team', icon: Users },
     { id: 'matchups', label: 'Set Matchups', icon: Calendar },
     { id: 'run_week', label: 'Run Week', icon: Trophy },
     { id: 'trade', label: 'Trade', icon: ArrowRightLeft },
@@ -99,48 +98,7 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
               name: p.name || `Player ${i + 1}`,
               team_name: p.team || `Team ${i + 1}`
             })),
-            free_agents: [
-              'Venusaur', 'Charizard', 'Blastoise', 'Pikachu', 'Raichu', 'Gengar', 'Alakazam', 'Machamp', 'Dragonite',
-              'Typhlosion', 'Feraligatr', 'Meganium', 'Ampharos', 'Skarmory',
-              'Sceptile', 'Blaziken', 'Swampert', 'Gardevoir', 'Metagross', 'Salamence',
-              'Bulbasaur', 'Ivysaur', 'Charmander', 'Charmeleon', 'Squirtle', 'Wartortle'
-            ]
-          }
-        };
-        break;
-      }
-      case 'draft': {
-        if (!state || !state.meta.current_drafter) {
-          alert('No active draft');
-          return;
-        }
-        if (!formData.pokemon) {
-          alert('Please enter a Pokémon name');
-          return;
-        }
-        command = {
-          command: 'DRAFT_PICK',
-          args: {
-            player_id: state.meta.current_drafter,
-            pokemon_id: formData.pokemon.trim()
-          }
-        };
-        break;
-      }
-      case 'register': {
-        const roster = (formData.roster || '')
-          .split(',')
-          .map((p: string) => p.trim())
-          .filter((p: string) => p);
-        if (roster.length !== 4) {
-          alert('Please enter exactly 4 Pokémon names separated by commas');
-          return;
-        }
-        command = {
-          command: 'REGISTER_TEAM',
-          args: {
-            player_id: formData.playerId || state?.players[0]?.player_id,
-            roster: roster.map((pokemon_id: string) => ({ pokemon_id, level: 50 }))
+            free_agents: Object.keys(POKEMON_DATA).sort()
           }
         };
         break;
@@ -208,6 +166,43 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
       command: 'DRAFT_PICK',
       args: { player_id: state.meta.current_drafter, pokemon_id: pokemon }
     });
+  };
+
+  const handleManualDraft = () => {
+    if (!state || !state.meta.current_drafter) {
+      alert('No active draft');
+      return;
+    }
+    if (!formData.pokemon) {
+      alert('Please enter a Pokémon name');
+      return;
+    }
+    onExecuteCommand({
+      command: 'DRAFT_PICK',
+      args: { player_id: state.meta.current_drafter, pokemon_id: formData.pokemon.trim() }
+    });
+    updateFormData('pokemon', '');
+  };
+
+  const handleRegisterTeam = () => {
+    if (!state) {
+      alert('Initialize league first');
+      return;
+    }
+    const roster = (formData.roster || '')
+      .split(',')
+      .map(p => p.trim())
+      .filter(p => p);
+    if (roster.length !== 4) {
+      alert('Please enter exactly 4 Pokémon names separated by commas');
+      return;
+    }
+    const playerId = formData.playerId || state.players[0]?.player_id;
+    onExecuteCommand({
+      command: 'REGISTER_TEAM',
+      args: { player_id: playerId, roster: roster.map(pokemon_id => ({ pokemon_id, level: 50 })) }
+    });
+    updateFormData('roster', '');
   };
 
   return (
@@ -301,13 +296,22 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
               {/* UPDATED: input + availability-aware grid with disabled gray styling */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Pokémon</label>
-                <input
-                  type="text"
-                  value={formData.pokemon || ''}
-                  onChange={(e) => updateFormData('pokemon', e.target.value)}
-                  placeholder="Charizard"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={formData.pokemon || ''}
+                    onChange={(e) => updateFormData('pokemon', e.target.value)}
+                    placeholder="Charizard"
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleManualDraft}
+                    className="px-3 py-2 bg-blue-600 text-white rounded-lg"
+                  >
+                    Draft Pokémon
+                  </button>
+                </div>
               </div>
 
               <div className="mt-4">
@@ -335,33 +339,37 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
                   })}
                 </div>
               </div>
-            </div>
-          )}
-
-          {activeTab === 'register' && state && (
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Player</label>
-                <select
-                  value={formData.playerId || ''}
-                  onChange={(e) => updateFormData('playerId', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              <div className="border-t pt-4 space-y-4">
+                <h4 className="text-sm font-medium text-gray-700">Register Team</h4>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Player</label>
+                  <select
+                    value={formData.playerId || ''}
+                    onChange={(e) => updateFormData('playerId', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="">Select Player</option>
+                    {state.players.map(p => (
+                      <option key={p.player_id} value={p.player_id}>{p.name}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Team Roster (4 Pokémon, comma-separated)</label>
+                  <textarea
+                    value={formData.roster || ''}
+                    onChange={(e) => updateFormData('roster', e.target.value)}
+                    rows={3}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={handleRegisterTeam}
+                  className="w-full bg-green-600 text-white py-2 rounded-lg"
                 >
-                  <option value="">Select Player</option>
-                  {state.players.map(p => (
-                    <option key={p.player_id} value={p.player_id}>{p.name}</option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Team Roster (4 Pokémon, comma-separated)</label>
-                <textarea
-                  value={formData.roster || ''}
-                  onChange={(e) => updateFormData('roster', e.target.value)}
-                  placeholder="Charizard, Blastoise, Venusaur, Pikachu"
-                  rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
+                  Register Team
+                </button>
               </div>
             </div>
           )}

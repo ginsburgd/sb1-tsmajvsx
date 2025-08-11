@@ -88,11 +88,12 @@ export class LeagueEngine {
           seed_strategy: 'sha256(league_id+season+week+matchup_id)'
         },
         draft_order: args.draft_order || args.players.map((p: any) => p.player_id),
-        current_drafter: (args.draft_order || args.players.map((p: any) => p.player_id))[0] || null
+        current_drafter: (args.draft_order || args.players.map((p: any) => p.player_id))[0] || null,
+        draft_direction: 1
       },
       config: {
         team_size: 4,
-        gens_allowed: [1, 2, 3],
+        gens_allowed: [1],
         battle: {
           use_status_moves: false,
           allow_items: false,
@@ -490,21 +491,34 @@ export class LeagueEngine {
 
     logs.push(`${player.name} drafted ${args.pokemon_id}`);
 
-    // Advance to next drafter
+    // Advance to next drafter using snake order
     const order = state.meta.draft_order;
+    let direction = state.meta.draft_direction || 1;
     const currentIndex = order.indexOf(args.player_id);
-    let nextIndex = currentIndex;
+    let nextIndex = currentIndex + direction;
+
+    if (nextIndex >= order.length || nextIndex < 0) {
+      direction = -direction;
+      nextIndex = currentIndex; // same player drafts again when reversing
+    }
+
     let found = false;
     for (let i = 0; i < order.length; i++) {
-      nextIndex = (nextIndex + 1) % order.length;
-      const nextPlayer = state.players.find(p => p.player_id === order[nextIndex]);
+      const nextPlayerId = order[nextIndex];
+      const nextPlayer = state.players.find(p => p.player_id === nextPlayerId);
       if (nextPlayer && nextPlayer.roster.length < state.config.team_size) {
-        state.meta.current_drafter = order[nextIndex];
+        state.meta.current_drafter = nextPlayerId;
         found = true;
         break;
       }
+      nextIndex += direction;
+      if (nextIndex >= order.length || nextIndex < 0) {
+        direction = -direction;
+        nextIndex += direction;
+      }
     }
 
+    state.meta.draft_direction = direction;
     if (!found) {
       state.meta.current_drafter = null;
     }
