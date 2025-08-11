@@ -4,7 +4,7 @@ import { BattleSimulator } from './battle';
 import { generateSeed } from '../utils/crypto';
 
 export class LeagueEngine {
-  processCommand(command: Command): EngineResponse {
+  async processCommand(command: Command): Promise<EngineResponse> {
     let state = command.league_state;
     const logs: string[] = [];
     const errors: string[] = [];
@@ -37,12 +37,31 @@ export class LeagueEngine {
           result = this.getStandings(state!, logs);
           break;
         case 'SAVE':
-          result = { message: 'League state saved' };
-          logs.push('League state saved');
+          try {
+            await fetch('http://localhost:3000/league', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(state)
+            });
+            result = { message: 'League state saved' };
+            logs.push('League state saved');
+          } catch {
+            errors.push('Failed to save league state');
+          }
           break;
         case 'LOAD':
-          result = { message: 'League state loaded' };
-          logs.push('League state loaded');
+          try {
+            const response = await fetch('http://localhost:3000/league');
+            if (response.ok) {
+              state = await response.json();
+              result = { message: 'League state loaded' };
+              logs.push('League state loaded');
+            } else {
+              errors.push('Failed to load league state');
+            }
+          } catch {
+            errors.push('Failed to load league state');
+          }
           break;
         default:
           errors.push(`Unknown command: ${command.command}`);
