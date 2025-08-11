@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Command, LeagueState } from '../types/league';
+import { POKEMON_DATA } from '../data/pokemon';
 import { Play, Users, Calendar, Trophy, ArrowRightLeft, UserPlus, ListOrdered } from 'lucide-react';
 
 interface CommandPanelProps {
@@ -21,6 +22,41 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
     { id: 'trade', label: 'Trade', icon: ArrowRightLeft },
     { id: 'pickup', label: 'Free Agents', icon: UserPlus }
   ];
+
+  const allDraftPokemon = useMemo(() => {
+    if (!state) return [] as string[];
+    const drafted = state.players.flatMap(p =>
+      p.roster ? p.roster.map(r => r.pokemon_id) : []
+    );
+    const all = Array.from(new Set([...state.free_agents, ...drafted]));
+    return all.sort();
+  }, [state]);
+
+  const TYPE_COLORS: { [key: string]: string } = {
+    Normal: 'bg-gray-400',
+    Fire: 'bg-red-500',
+    Water: 'bg-blue-500',
+    Electric: 'bg-yellow-400',
+    Grass: 'bg-green-500',
+    Ice: 'bg-cyan-400',
+    Fighting: 'bg-red-700',
+    Poison: 'bg-purple-500',
+    Ground: 'bg-yellow-700',
+    Flying: 'bg-indigo-400',
+    Psychic: 'bg-pink-500',
+    Bug: 'bg-lime-500',
+    Rock: 'bg-stone-500',
+    Ghost: 'bg-purple-700',
+    Dragon: 'bg-indigo-600',
+    Dark: 'bg-gray-700',
+    Steel: 'bg-gray-500',
+    Fairy: 'bg-pink-400'
+  };
+
+  const getColor = (pokemon: string) => {
+    const type = POKEMON_DATA[pokemon]?.types[0] || 'Normal';
+    return TYPE_COLORS[type] || 'bg-gray-400';
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -136,6 +172,21 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
         return;
     }
     
+      onExecuteCommand(command);
+    };
+
+  const handleDraftPick = (pokemon: string) => {
+    if (!state || !state.meta.current_drafter) {
+      alert('No active draft');
+      return;
+    }
+    const command: Command = {
+      command: 'DRAFT_PICK',
+      args: {
+        player_id: state.meta.current_drafter,
+        pokemon_id: pokemon
+      }
+    };
     onExecuteCommand(command);
   };
 
@@ -223,17 +274,30 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
             <div className="space-y-4">
               <p className="text-sm text-gray-600">
                 Current Drafter:{' '}
-                {state.players.find(p => p.player_id === state.meta.current_drafter)?.team_name || state.meta.current_drafter}
+                {state.players.find(p => p.player_id === state.meta.current_drafter)?.team_name ||
+                  state.meta.current_drafter}
               </p>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Pokémon Name</label>
-                <input
-                  type="text"
-                  value={formData.pokemon || ''}
-                  onChange={(e) => updateFormData('pokemon', e.target.value)}
-                  placeholder="Pikachu"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-2">Select Pokémon</label>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 max-h-64 overflow-y-auto">
+                  {allDraftPokemon.map((pokemon) => {
+                    const disabled = !state.free_agents.includes(pokemon);
+                    const colorClass = disabled
+                      ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                      : `${getColor(pokemon)} text-white hover:opacity-90`;
+                    return (
+                      <button
+                        key={pokemon}
+                        type="button"
+                        disabled={disabled}
+                        onClick={() => handleDraftPick(pokemon)}
+                        className={`px-2 py-1 rounded ${colorClass}`}
+                      >
+                        {pokemon}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           )}
@@ -400,13 +464,15 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-          >
-            {isLoading ? 'Processing...' : `Execute ${tabs.find(t => t.id === activeTab)?.label}`}
-          </button>
+          {activeTab !== 'draft' && (
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+            >
+              {isLoading ? 'Processing...' : `Execute ${tabs.find(t => t.id === activeTab)?.label}`}
+            </button>
+          )}
         </form>
       </div>
     </div>
