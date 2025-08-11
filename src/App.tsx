@@ -79,7 +79,7 @@ function App() {
               <h2 className="text-2xl font-bold text-gray-900 mb-2">League Management</h2>
               <p className="text-gray-600">Execute commands to manage your Pokémon Fantasy League</p>
             </div>
-            <CommandPanel onExecuteCommand={handleExecuteCommand} isLoading={isLoading} />
+            <CommandPanel onExecuteCommand={handleExecuteCommand} isLoading={isLoading} state={leagueState} />
           </div>
 
           {/* League Display */}

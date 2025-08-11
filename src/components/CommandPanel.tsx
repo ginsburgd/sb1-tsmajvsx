@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
-import { Command } from '../types/league';
-import { Play, Users, Calendar, Trophy, ArrowRightLeft, UserPlus } from 'lucide-react';
+import { Command, LeagueState } from '../types/league';
+import { Play, Users, Calendar, Trophy, ArrowRightLeft, UserPlus, ListOrdered } from 'lucide-react';
 
 interface CommandPanelProps {
   onExecuteCommand: (command: Command) => void;
   isLoading: boolean;
+  state: LeagueState | null;
 }
 
-export function CommandPanel({ onExecuteCommand, isLoading }: CommandPanelProps) {
+export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPanelProps) {
   const [activeTab, setActiveTab] = useState('init');
   const [formData, setFormData] = useState<any>({});
 
   const tabs = [
     { id: 'init', label: 'Initialize', icon: Play },
+    { id: 'draft', label: 'Draft', icon: ListOrdered },
     { id: 'register', label: 'Register Team', icon: Users },
     { id: 'matchups', label: 'Set Matchups', icon: Calendar },
     { id: 'run_week', label: 'Run Week', icon: Trophy },
@@ -47,7 +49,25 @@ export function CommandPanel({ onExecuteCommand, isLoading }: CommandPanelProps)
           }
         };
         break;
-      
+
+      case 'draft':
+        if (!state || !state.meta.current_drafter) {
+          alert('No active draft');
+          return;
+        }
+        if (!formData.pokemon) {
+          alert('Please enter a Pokémon name');
+          return;
+        }
+        command = {
+          command: 'DRAFT_PICK',
+          args: {
+            player_id: state.meta.current_drafter,
+            pokemon_id: formData.pokemon.trim()
+          }
+        };
+        break;
+
       case 'register':
         const roster = (formData.roster || '').split(',').map((p: string) => p.trim()).filter((p: string) => p);
         if (roster.length !== 4) {
@@ -196,6 +216,25 @@ export function CommandPanel({ onExecuteCommand, isLoading }: CommandPanelProps)
                   </div>
                 </div>
               ))}
+            </div>
+          )}
+
+          {activeTab === 'draft' && state && (
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                Current Drafter:{' '}
+                {state.players.find(p => p.player_id === state.meta.current_drafter)?.team_name || state.meta.current_drafter}
+              </p>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Pokémon Name</label>
+                <input
+                  type="text"
+                  value={formData.pokemon || ''}
+                  onChange={(e) => updateFormData('pokemon', e.target.value)}
+                  placeholder="Pikachu"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
             </div>
           )}
 

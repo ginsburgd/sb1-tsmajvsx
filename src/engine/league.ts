@@ -30,6 +30,9 @@ export class LeagueEngine {
         case 'PICKUP':
           ({ state, result } = this.processPickup(state!, command.args, logs, errors));
           break;
+        case 'DRAFT_PICK':
+          ({ state, result } = this.processDraftPick(state!, command.args, logs, errors));
+          break;
         case 'STANDINGS':
           result = this.getStandings(state!, logs);
           break;
@@ -64,7 +67,9 @@ export class LeagueEngine {
         current_week: 0,
         rng: {
           seed_strategy: 'sha256(league_id+season+week+matchup_id)'
-        }
+        },
+        draft_order: args.draft_order || args.players.map((p: any) => p.player_id),
+        current_drafter: (args.draft_order || args.players.map((p: any) => p.player_id))[0] || null
       },
       config: {
         team_size: 4,
@@ -411,6 +416,64 @@ export class LeagueEngine {
     return {
       state,
       result: { message: 'Pickup completed successfully', added: toAdd, dropped: toDrop }
+    };
+  }
+
+  private processDraftPick(state: LeagueState, args: any, logs: string[], errors: string[]): { state: LeagueState; result: any } {
+    const player = state.players.find(p => p.player_id === args.player_id);
+    if (!player) {
+      errors.push(`Player ${args.player_id} not found`);
+      return { state, result: {} };
+    }
+
+    if (state.meta.current_drafter !== args.player_id) {
+      errors.push(`It's not ${args.player_id}'s turn to draft`);
+      return { state, result: {} };
+    }
+
+    if (player.roster.length >= state.config.team_size) {
+      errors.push(`${player.name}'s roster is already full`);
+      return { state, result: {} };
+    }
+
+    if (!state.free_agents.includes(args.pokemon_id)) {
+      errors.push(`${args.pokemon_id} is not available as a free agent`);
+      return { state, result: {} };
+    }
+
+    const index = state.free_agents.indexOf(args.pokemon_id);
+    state.free_agents.splice(index, 1);
+    const pokemonData = state.pokedex.pokemon[args.pokemon_id];
+    player.roster.push({
+      pokemon_id: args.pokemon_id,
+      level: 50,
+      moves: pokemonData.default_moves.slice(0, 4)
+    });
+
+    logs.push(`${player.name} drafted ${args.pokemon_id}`);
+
+    // Advance to next drafter
+    const order = state.meta.draft_order;
+    let currentIndex = order.indexOf(args.player_id);
+    let nextIndex = currentIndex;
+    let found = false;
+    for (let i = 0; i < order.length; i++) {
+      nextIndex = (nextIndex + 1) % order.length;
+      const nextPlayer = state.players.find(p => p.player_id === order[nextIndex]);
+      if (nextPlayer && nextPlayer.roster.length < state.config.team_size) {
+        state.meta.current_drafter = order[nextIndex];
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      state.meta.current_drafter = null;
+    }
+
+    return {
+      state,
+      result: { message: 'Draft pick successful', pokemon_id: args.pokemon_id, player_id: args.player_id }
     };
   }
 
