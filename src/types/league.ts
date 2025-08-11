@@ -82,6 +82,8 @@ export interface LeagueState {
     rng: {
       seed_strategy: string;
     };
+    draft_order: string[];
+    current_drafter: string | null;
   };
   config: {
     team_size: number;

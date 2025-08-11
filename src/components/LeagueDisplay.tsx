@@ -79,6 +79,43 @@ export function LeagueDisplay({ state, result, logs, errors }: LeagueDisplayProp
         </div>
       )}
 
+      {/* Draft Progress */}
+      {state.meta.draft_order.length > 0 && (
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200">
+          <div className="border-b border-gray-200 p-6">
+            <h3 className="text-xl font-bold text-gray-900">Draft Progress</h3>
+            {state.meta.current_drafter && (
+              <p className="text-sm text-gray-600 mt-1">
+                Current Pick:{' '}
+                {state.players.find(p => p.player_id === state.meta.current_drafter)?.team_name || state.meta.current_drafter}
+              </p>
+            )}
+          </div>
+          <div className="p-6">
+            <ul className="space-y-2">
+              {state.meta.draft_order.map((playerId) => {
+                const player = state.players.find(p => p.player_id === playerId);
+                const picks = player?.roster.length || 0;
+                const remaining = state.config.team_size - picks;
+                return (
+                  <li
+                    key={playerId}
+                    className={`flex justify-between p-2 rounded ${
+                      state.meta.current_drafter === playerId ? 'bg-blue-50' : ''
+                    }`}
+                  >
+                    <span>{player?.team_name || playerId}</span>
+                    <span className="text-sm text-gray-600">
+                      {picks}/{state.config.team_size} drafted{remaining > 0 ? ` (${remaining} left)` : ''}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      )}
+
       {/* Players and Rosters */}
       <div className="bg-white rounded-xl shadow-lg border border-gray-200">
         <div className="border-b border-gray-200 p-6">
