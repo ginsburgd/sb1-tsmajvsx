@@ -279,7 +279,8 @@ export class LeagueEngine {
           [homePlayer.player_id]: battleResult.homeStats,
           [awayPlayer.player_id]: battleResult.awayStats
         },
-        seed_used: seed
+        seed_used: seed,
+        replay: battleResult.turns
       };
 
       results.push(result);

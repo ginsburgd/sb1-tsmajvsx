@@ -51,6 +51,25 @@ export interface WeekSchedule {
   matchups: Matchup[];
 }
 
+export interface BattleEvent {
+  type: 'damage' | 'status';
+  amount?: number;
+  status?: string;
+}
+
+export interface BattleTurn {
+  turn: number;
+  attacker: string;
+  defender: string;
+  move: string;
+  damage: number;
+  critical: boolean;
+  effectiveness: number;
+  fainted: boolean;
+  missed?: boolean;
+  events: BattleEvent[];
+}
+
 export interface BattleResult {
   matchup_id: string;
   winner: string;
@@ -67,6 +86,7 @@ export interface BattleResult {
     };
   };
   seed_used: string;
+  replay: BattleTurn[];
 }
 
 export interface WeekResult {

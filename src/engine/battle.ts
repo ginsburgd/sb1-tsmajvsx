@@ -1,4 +1,4 @@
-import { Pokemon, Move, RosterPokemon, LeagueState } from '../types/league';
+import { Pokemon, Move, RosterPokemon, LeagueState, BattleTurn, BattleEvent } from '../types/league';
 import { SeededRandom } from '../utils/crypto';
 
 interface BattlePokemon {
@@ -14,18 +14,6 @@ interface BattlePokemon {
     spe: number;
   };
   moves: Move[];
-}
-
-interface BattleTurn {
-  turn: number;
-  attacker: string;
-  defender: string;
-  move: string;
-  damage: number;
-  critical: boolean;
-  effectiveness: number;
-  fainted: boolean;
-  missed?: boolean;
 }
 
 export class BattleSimulator {
@@ -267,6 +255,7 @@ export class BattleSimulator {
   private executeTurn(attacker: BattlePokemon, defender: BattlePokemon, move: Move, turnNumber: number, attackerName: string, defenderName: string): { fainted: boolean; damage: number } {
     // Check if move hits
     if (!this.rng.bool(move.accuracy)) {
+      const events: BattleEvent[] = [{ type: 'status', status: 'missed' }];
       this.turns.push({
         turn: turnNumber,
         attacker: attackerName,
@@ -276,13 +265,25 @@ export class BattleSimulator {
         critical: false,
         effectiveness: 1,
         fainted: false,
-        missed: true
+        missed: true,
+        events
       });
       return { fainted: false, damage: 0 };
     }
 
     if (move.category === 'Status') {
-      // For simplicity, status moves do nothing in this implementation
+      const events: BattleEvent[] = [{ type: 'status', status: move.type }];
+      this.turns.push({
+        turn: turnNumber,
+        attacker: attackerName,
+        defender: defenderName,
+        move: move.type + ' move',
+        damage: 0,
+        critical: false,
+        effectiveness: 1,
+        fainted: false,
+        events
+      });
       return { fainted: false, damage: 0 };
     }
 
@@ -322,7 +323,14 @@ export class BattleSimulator {
     // Apply damage
     defender.current_hp = Math.max(0, defender.current_hp - damage);
     const fainted = defender.current_hp === 0;
-    
+
+    const events: BattleEvent[] = [{ type: 'damage', amount: damage }];
+    if (critical) events.push({ type: 'status', status: 'critical' });
+    if (effectiveness >= 2) events.push({ type: 'status', status: 'super-effective' });
+    if (effectiveness <= 0.5 && effectiveness > 0) events.push({ type: 'status', status: 'not-very-effective' });
+    if (effectiveness === 0) events.push({ type: 'status', status: 'no-effect' });
+    if (fainted) events.push({ type: 'status', status: 'fainted' });
+
     this.turns.push({
       turn: turnNumber,
       attacker: attackerName,
@@ -331,7 +339,8 @@ export class BattleSimulator {
       damage,
       critical,
       effectiveness,
-      fainted
+      fainted,
+      events
     });
 
     return { fainted, damage };
