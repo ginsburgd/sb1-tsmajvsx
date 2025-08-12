@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start-api": "ts-node server/index.ts"
+    "start-api": "node --loader ts-node/esm server/index.ts"
   },
   "dependencies": {
     "chart.js": "^4.5.0",
