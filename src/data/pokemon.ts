@@ -456,7 +456,8 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
 };
 
 export const MOVE_DATA: { [key: string]: Move } = {
-  'Acid Armor': { type: 'Poison', category: 'Status', power: 0, accuracy: 100, priority: 0, stab_applicable: false },
+'Struggle': { type: 'Normal', category: 'Physical', power: 50, accuracy: 100, priority: 0, stab_applicable: false },
+'Acid Armor': { type: 'Poison', category: 'Status', power: 0, accuracy: 100, priority: 0, stab_applicable: false },
 'Agility': { type: 'Psychic', category: 'Status', power: 0, accuracy: 100, priority: 0, stab_applicable: false },
 'Amnesia': { type: 'Psychic', category: 'Status', power: 0, accuracy: 100, priority: 0, stab_applicable: false },
 'Ancient Power': { type: 'Rock', category: 'Special', power: 60, accuracy: 100, priority: 0, stab_applicable: true },
