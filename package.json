@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
+    "@netlify/functions": "^4.2.1",
     "chart.js": "^4.5.0",
     "dotenv": "^17.2.1",
     "lucide-react": "^0.344.0",
