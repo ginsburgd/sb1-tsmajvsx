@@ -51,7 +51,11 @@ function App() {
   useEffect(() => {
     const loadState = async () => {
       try {
-        const res = await fetch('http://localhost:3000/league');
+        // Use relative URL for production, localhost for development
+        const apiUrl = process.env.NODE_ENV === 'production' 
+          ? '/api/league' 
+          : 'http://localhost:3000/league';
+        const res = await fetch(apiUrl);
         if (res.ok) {
           const data: LeagueState = await res.json();
           if (data && Object.keys(data).length > 0) {
