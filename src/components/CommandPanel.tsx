@@ -107,7 +107,7 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
               'Grimer', 'Shellder', 'Gastly', 'Onix', 'Drowzee', 'Krabby', 'Voltorb', 'Exeggcute', 'Cubone', 'Hitmonlee', 'Hitmonchan', 
               'Lickitung', 'Koffing', 'Rhyhorn', 'Chansey', 'Tangela', 'Kangaskhan', 'Horsea','Goldeen', 'Seaking', 'Staryu', 'Mr. Mime', 'Scyther',
               'Jynx', 'Electabuzz', 'Magmar', 'Pinsir', 'Tauros', 'Magikarp', 'Lapras', 'Ditto', 'Eevee', 'Porygon', 'Omanyte', 
-              'Kabuto', 'Aerodactyl', 'Snorlax', 'Dratini', 'Dragonair'
+              'Kabuto', 'Aerodactyl', 'Snorlax', 'Dratini'
           ]
           
           }
