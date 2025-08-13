@@ -92,7 +92,7 @@ export class LeagueEngine {
         draft_direction: 1
       },
       config: {
-        team_size: 4,
+        team_size: 6,
         gens_allowed: [1],
         battle: {
           use_status_moves: false,
@@ -185,7 +185,7 @@ export class LeagueEngine {
       return {
         pokemon_id: pokemon.pokemon_id,
         nickname: pokemon.nickname || null,
-        level: pokemon.level || 50,
+        level: pokemon.level || 1,
         moves: pokemon.moves || pokemonData.default_moves.slice(0, 4)
       };
     });
@@ -444,7 +444,7 @@ export class LeagueEngine {
         const pokemonData = state.pokedex.pokemon[pokemonId];
         player.roster.push({
           pokemon_id: pokemonId,
-          level: 50,
+          level: 1,
           moves: pokemonData.default_moves.slice(0, 4)
         });
       }
@@ -485,7 +485,7 @@ export class LeagueEngine {
     const pokemonData = state.pokedex.pokemon[args.pokemon_id];
     player.roster.push({
       pokemon_id: args.pokemon_id,
-      level: 50,
+      level: 1,
       moves: pokemonData.default_moves.slice(0, 4)
     });
 

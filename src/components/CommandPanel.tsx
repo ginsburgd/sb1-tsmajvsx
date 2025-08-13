@@ -100,22 +100,14 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
               team_name: p.team || `Team ${i + 1}`
             })),
             free_agents : [
-              'Bulbasaur', 'Ivysaur', 'Venusaur', 'Charmander', 'Charmeleon', 'Charizard', 'Squirtle', 'Wartortle', 'Blastoise', 
-              'Caterpie', 'Metapod', 'Butterfree', 'Weedle', 'Kakuna', 'Beedrill', 'Pidgey', 'Pidgeotto', 'Pidgeot', 'Rattata', 
-              'Raticate', 'Spearow', 'Fearow', 'Ekans', 'Arbok', 'Pikachu', 'Raichu', 'Sandshrew', 'Sandslash', 'Nidoran', 
-              'Nidorina', 'Nidoqueen', 'Nidorano‚', 'Nidorino', 'Nidoking', 'Clefairy', 'Clefable', 'Vulpix', 'Ninetales', 
-              'Jigglypuff', 'Wigglytuff', 'Zubat', 'Golbat', 'Oddish', 'Gloom', 'Vileplume', 'Paras', 'Parasect', 'Venonat', 
-              'Venomoth', 'Diglett', 'Dugtrio', 'Meowth', 'Persian', 'Psyduck', 'Golduck', 'Mankey', 'Primeape', 'Growlithe', 
-              'Arcanine', 'Poliwag', 'Poliwhirl', 'Poliwrath', 'Abra', 'Kadabra', 'Alakazam', 'Machop', 'Machoke', 'Machamp', 
-              'Bellsprout', 'Weepinbell', 'Victreebel', 'Tentacool', 'Tentacruel', 'Geodude', 'Graveler', 'Golem', 'Ponyta', 
-              'Rapidash', 'Slowpoke', 'Slowbro', 'Magnemite', 'Magneton', 'Farfetchd', 'Doduo', 'Dodrio', 'Seel', 'Dewgong', 
-              'Grimer', 'Muk', 'Shellder', 'Cloyster', 'Gastly', 'Haunter', 'Gengar', 'Onix', 'Drowzee', 'Hypno', 'Krabby', 
-              'Kingler', 'Voltorb', 'Electrode', 'Exeggcute', 'Exeggutor', 'Cubone', 'Marowak', 'Hitmonlee', 'Hitmonchan', 
-              'Lickitung', 'Koffing', 'Weezing', 'Rhyhorn', 'Rhydon', 'Chansey', 'Tangela', 'Kangaskhan', 'Horsea', 'Seadra', 
-              'Goldeen', 'Seaking', 'Staryu', 'Starmie', 'Mr. Mime', 'Scyther', 'Jynx', 'Electabuzz', 'Magmar', 'Pinsir', 'Tauros', 
-              'Magikarp', 'Gyarados', 'Lapras', 'Ditto', 'Eevee', 'Vaporeon', 'Jolteon', 'Flareon', 'Porygon', 'Omanyte', 'Omastar', 
-              'Kabuto', 'Kabutops', 'Aerodactyl', 'Snorlax', 'Articuno', 'Zapdos', 'Moltres', 'Dratini', 'Dragonair', 'Dragonite', 
-              'Mewtwo', 'Mew'
+              'Bulbasaur', 'Charmander', 'Squirtle', 'Caterpie', 'Weedle', 'Pidgey', 'Rattata', 'Spearow',
+              'Ekans', 'Pikachu', 'Sandshrew', 'Nidoran', 'Clefairy', 'Vulpix', 'Jigglypuff', 'Zubat', 'Oddish',
+              'Paras', 'Venonat', 'Diglett', 'Meowth', 'Psyduck', 'Mankey', 'Growlithe', 'Poliwag', 'Abra', 'Machop',
+              'Bellsprout', 'Tentacool', 'Geodude', 'Ponyta', 'Slowpoke', 'Magnemite', 'Farfetchd', 'Doduo', 'Seel', 
+              'Grimer', 'Shellder', 'Gastly', 'Onix', 'Drowzee', 'Krabby', 'Voltorb', 'Exeggcute', 'Cubone', 'Hitmonlee', 'Hitmonchan', 
+              'Lickitung', 'Koffing', 'Rhyhorn', 'Chansey', 'Tangela', 'Kangaskhan', 'Horsea','Goldeen', 'Seaking', 'Staryu', 'Mr. Mime', 'Scyther',
+              'Jynx', 'Electabuzz', 'Magmar', 'Pinsir', 'Tauros', 'Magikarp', 'Lapras', 'Ditto', 'Eevee', 'Porygon', 'Omanyte', 
+              'Kabuto', 'Aerodactyl', 'Snorlax', 'Dratini', 'Dragonair'
           ]
           
           }
@@ -323,7 +315,7 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
               <div className="mt-4">
                 <h4 className="text-sm font-medium text-gray-700 mb-2">Available Pokémon</h4>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-48 overflow-y-auto">
-                  {allDraftPokemon.map((pokemon) => (
+                  {state.free_agents.map((pokemon) => (
                     <button
                       key={pokemon}
                       type="button"

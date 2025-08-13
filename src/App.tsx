@@ -177,7 +177,7 @@ function App() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
                   { step: '1', title: 'Initialize League', description: 'Create your league with players and free agents' },
-                  { step: '2', title: 'Register Teams', description: 'Each player drafts 4 Pokémon for their roster' },
+                  { step: '2', title: 'Register Teams', description: 'Each player drafts 6 Pokémon for their roster' },
                   { step: '3', title: 'Set Matchups', description: 'Configure weekly head-to-head matchups' },
                   { step: '4', title: 'Run Battles', description: 'Simulate battles and track results' }
                 ].map((step, index) => (
