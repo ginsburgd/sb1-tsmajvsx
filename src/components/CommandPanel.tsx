@@ -137,8 +137,8 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
           .split(',')
           .map((p: string) => p.trim())
           .filter((p: string) => p);
-        if (roster.length !== 4) {
-          alert('Please enter exactly 4 Pokémon names separated by commas');
+        if (roster.length !== 6) {
+          alert('Please enter exactly 6 Pokémon names separated by commas');
           return;
         }
         command = {

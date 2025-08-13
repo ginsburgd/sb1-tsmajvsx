@@ -255,7 +255,7 @@ export class LeagueEngine {
         continue;
       }
 
-      if (homePlayer.roster.length !== 4 || awayPlayer.roster.length !== 4) {
+      if (homePlayer.roster.length !== 6 || awayPlayer.roster.length !== 6) {
         errors.push(`Players must have complete rosters to battle`);
         continue;
       }
