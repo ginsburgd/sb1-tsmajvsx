@@ -158,12 +158,14 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
         }
         const week = parseInt(formData.weekNumber) || 1;
         let ids = state.players.map(p => p.player_id);
+        ids.push('byweek');
         const mod_week = (week - 1) % (ids.length - 1) + 1
         const matchups = [] as { matchup_id: string; home_player_id: string; away_player_id: string }[];
         //Adding Round Robin Logic
         for (let i = 0; i < Math.round(ids.length / 2); i += 1) {
           let home_index = 0
-          console.log('made it here!')
+          console.log('made it here!', ids[0])
+          console.log(typeof ids[0]);
           if (i != 0) { // Lock player one in place. Everything else rotates
             home_index = i - mod_week + 1
             if (home_index < 1) { // Wrap around
@@ -178,7 +180,10 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
           console.log('away_index ' +  away_index + ' i'  + i)
           
           //if (ids[i + 1]) {
-          matchups.push({ matchup_id: `w${week}m${i / 2 + 1}`, home_player_id: ids[home_index], away_player_id: ids[away_index] });
+          if (ids[home_index] != 'byweek' && ids[away_index] != 'byweek') {
+            matchups.push({ matchup_id: `w${week}m${i / 2 + 1}`, home_player_id: ids[home_index], away_player_id: ids[away_index] });
+          }
+          
           //}
         }
         command = { command: 'SET_MATCHUPS', args: { week_number: week, matchups } };
