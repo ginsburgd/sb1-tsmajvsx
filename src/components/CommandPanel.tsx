@@ -101,7 +101,7 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
             })),
             free_agents : [
               'Bulbasaur', 'Charmander', 'Squirtle', 'Caterpie', 'Weedle', 'Pidgey', 'Rattata', 'Spearow',
-              'Ekans', 'Pikachu', 'Sandshrew', 'Nidoran', 'Clefairy', 'Vulpix', 'Jigglypuff', 'Zubat', 'Oddish',
+              'Ekans', 'Pikachu', 'Sandshrew', 'Nidoran♀', 'Nidoran♂', 'Clefairy', 'Vulpix', 'Jigglypuff', 'Zubat', 'Oddish',
               'Paras', 'Venonat', 'Diglett', 'Meowth', 'Psyduck', 'Mankey', 'Growlithe', 'Poliwag', 'Abra', 'Machop',
               'Bellsprout', 'Tentacool', 'Geodude', 'Ponyta', 'Slowpoke', 'Magnemite', 'Farfetchd', 'Doduo', 'Seel', 
               'Grimer', 'Shellder', 'Gastly', 'Onix', 'Drowzee', 'Krabby', 'Voltorb', 'Exeggcute', 'Cubone', 'Hitmonlee', 'Hitmonchan', 

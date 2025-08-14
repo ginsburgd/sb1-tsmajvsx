@@ -197,8 +197,8 @@ export const POKEMON_DATA: { [key: string]: Pokemon } = {
     base_stats: { hp: 75, atk: 100, def: 110, spa: 45, spd: 55, spe: 65 },
     default_moves: ['Earthquake', 'Rock Slide', 'Slash', 'Protect']
   },
-  'Nidorano': {
-    name: 'Nidorano',
+  'Nidoran♀': {
+    name: 'Nidoran♀',
     gen: 1,
     types: ['Poison'],
     base_stats: { hp: 55, atk: 47, def: 52, spa: 40, spd: 40, spe: 41 },
