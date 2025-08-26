@@ -158,7 +158,10 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
         }
         const week = parseInt(formData.weekNumber) || 1;
         let ids = state.players.map(p => p.player_id);
-        ids.push('byweek');
+        // If there are an odd amount of teams, one player has a by-week
+        if (ids.length % 2 == 1) {
+          ids.push('byweek');
+        }
         const mod_week = (week - 1) % (ids.length - 1) + 1
         const matchups = [] as { matchup_id: string; home_player_id: string; away_player_id: string }[];
         //Adding Round Robin Logic
