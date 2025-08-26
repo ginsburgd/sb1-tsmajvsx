@@ -1,6 +1,7 @@
 # Pokémon Fantasy League
 
 A starter project for a Pokémon-themed fantasy league built with React, TypeScript, Vite and Tailwind CSS.
+Website: https://pokemonfantasyleague.netlify.app
 
 ## Features
 
