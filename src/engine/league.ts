@@ -488,6 +488,7 @@ export class LeagueEngine {
       level: 1,
       moves: pokemonData.default_moves.slice(0, 4)
     });
+    console.log(pokemonData.default_moves.slice(0, 4))
 
     logs.push(`${player.name} drafted ${args.pokemon_id}`);
 

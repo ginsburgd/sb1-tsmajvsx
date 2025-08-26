@@ -103,7 +103,7 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
               'Bulbasaur', 'Charmander', 'Squirtle', 'Caterpie', 'Weedle', 'Pidgey', 'Rattata', 'Spearow',
               'Ekans', 'Pikachu', 'Sandshrew', 'Nidoran♀', 'Nidoran♂', 'Clefairy', 'Vulpix', 'Jigglypuff', 'Zubat', 'Oddish',
               'Paras', 'Venonat', 'Diglett', 'Meowth', 'Psyduck', 'Mankey', 'Growlithe', 'Poliwag', 'Abra', 'Machop',
-              'Bellsprout', 'Tentacool', 'Geodude', 'Ponyta', 'Slowpoke', 'Magnemite', 'Farfetchd', 'Doduo', 'Seel', 
+              'Bellsprout', 'Tentacool', 'Geodude', 'Ponyta', 'Slowpoke', 'Magnemite', 'Farfetch\'d', 'Doduo', 'Seel', 
               'Grimer', 'Shellder', 'Gastly', 'Onix', 'Drowzee', 'Krabby', 'Voltorb', 'Exeggcute', 'Cubone', 'Hitmonlee', 'Hitmonchan', 
               'Lickitung', 'Koffing', 'Rhyhorn', 'Chansey', 'Tangela', 'Kangaskhan', 'Horsea','Goldeen', 'Seaking', 'Staryu', 'Mr. Mime', 'Scyther',
               'Jynx', 'Electabuzz', 'Magmar', 'Pinsir', 'Tauros', 'Magikarp', 'Lapras', 'Ditto', 'Eevee', 'Porygon', 'Omanyte', 

@@ -1,0 +1,3163 @@
+{
+  "Bulbasaur": {
+    "name": "Bulbasaur",
+    "pokedex_number": 1,
+    "gen": 1,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 45,
+      "atk": 49,
+      "def": 49,
+      "spa": 65,
+      "spd": 65,
+      "spe": 45
+    },
+    "default_moves": [
+      "Tackle",
+      "Growl"
+    ]
+  },
+  "Ivysaur": {
+    "name": "Ivysaur",
+    "pokedex_number": 2,
+    "gen": 1,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 62,
+      "def": 63,
+      "spa": 80,
+      "spd": 80,
+      "spe": 60
+    },
+    "default_moves": [
+      "Tackle",
+      "Growl",
+      "Leech-Seed"
+    ]
+  },
+  "Venusaur": {
+    "name": "Venusaur",
+    "pokedex_number": 3,
+    "gen": 1,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 80,
+      "atk": 100,
+      "def": 123,
+      "spa": 122,
+      "spd": 120,
+      "spe": 80
+    },
+    "default_moves": [
+      "Vine-Whip",
+      "Tackle",
+      "Growl",
+      "Leech-Seed"
+    ]
+  },
+  "Charmander": {
+    "name": "Charmander",
+    "pokedex_number": 4,
+    "gen": 1,
+    "types": [
+      "Fire"
+    ],
+    "base_stats": {
+      "hp": 39,
+      "atk": 52,
+      "def": 43,
+      "spa": 60,
+      "spd": 50,
+      "spe": 65
+    },
+    "default_moves": [
+      "Scratch",
+      "Growl"
+    ]
+  },
+  "Charmeleon": {
+    "name": "Charmeleon",
+    "pokedex_number": 5,
+    "gen": 1,
+    "types": [
+      "Fire"
+    ],
+    "base_stats": {
+      "hp": 58,
+      "atk": 64,
+      "def": 58,
+      "spa": 80,
+      "spd": 65,
+      "spe": 80
+    },
+    "default_moves": [
+      "Scratch",
+      "Growl",
+      "Ember"
+    ]
+  },
+  "Charizard": {
+    "name": "Charizard",
+    "pokedex_number": 6,
+    "gen": 1,
+    "types": [
+      "Fire",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 78,
+      "atk": 104,
+      "def": 78,
+      "spa": 159,
+      "spd": 115,
+      "spe": 100
+    },
+    "default_moves": [
+      "Scratch",
+      "Leer",
+      "Growl",
+      "Ember"
+    ]
+  },
+  "Squirtle": {
+    "name": "Squirtle",
+    "pokedex_number": 7,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 44,
+      "atk": 48,
+      "def": 65,
+      "spa": 50,
+      "spd": 64,
+      "spe": 43
+    },
+    "default_moves": [
+      "Tackle",
+      "Tail-Whip"
+    ]
+  },
+  "Wartortle": {
+    "name": "Wartortle",
+    "pokedex_number": 8,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 59,
+      "atk": 63,
+      "def": 80,
+      "spa": 65,
+      "spd": 80,
+      "spe": 58
+    },
+    "default_moves": [
+      "Tackle",
+      "Tail-Whip",
+      "Bubble"
+    ]
+  },
+  "Blastoise": {
+    "name": "Blastoise",
+    "pokedex_number": 9,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 79,
+      "atk": 103,
+      "def": 120,
+      "spa": 135,
+      "spd": 115,
+      "spe": 78
+    },
+    "default_moves": [
+      "Tackle",
+      "Tail-Whip",
+      "Water-Gun",
+      "Bubble"
+    ]
+  },
+  "Caterpie": {
+    "name": "Caterpie",
+    "pokedex_number": 10,
+    "gen": 1,
+    "types": [
+      "Bug"
+    ],
+    "base_stats": {
+      "hp": 45,
+      "atk": 30,
+      "def": 35,
+      "spa": 20,
+      "spd": 20,
+      "spe": 45
+    },
+    "default_moves": [
+      "Tackle",
+      "String-Shot"
+    ]
+  },
+  "Metapod": {
+    "name": "Metapod",
+    "pokedex_number": 11,
+    "gen": 1,
+    "types": [
+      "Bug"
+    ],
+    "base_stats": {
+      "hp": 50,
+      "atk": 20,
+      "def": 55,
+      "spa": 25,
+      "spd": 25,
+      "spe": 30
+    },
+    "default_moves": [
+      "Harden"
+    ]
+  },
+  "Butterfree": {
+    "name": "Butterfree",
+    "pokedex_number": 12,
+    "gen": 1,
+    "types": [
+      "Bug",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 45,
+      "def": 50,
+      "spa": 90,
+      "spd": 80,
+      "spe": 70
+    },
+    "default_moves": [
+      "Confusion"
+    ]
+  },
+  "Weedle": {
+    "name": "Weedle",
+    "pokedex_number": 13,
+    "gen": 1,
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 40,
+      "atk": 35,
+      "def": 30,
+      "spa": 20,
+      "spd": 20,
+      "spe": 50
+    },
+    "default_moves": [
+      "Poison-Sting",
+      "String-Shot"
+    ]
+  },
+  "Kakuna": {
+    "name": "Kakuna",
+    "pokedex_number": 14,
+    "gen": 1,
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 45,
+      "atk": 25,
+      "def": 50,
+      "spa": 25,
+      "spd": 25,
+      "spe": 35
+    },
+    "default_moves": [
+      "Harden"
+    ]
+  },
+  "Beedrill": {
+    "name": "Beedrill",
+    "pokedex_number": 15,
+    "gen": 1,
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 150,
+      "def": 40,
+      "spa": 15,
+      "spd": 80,
+      "spe": 145
+    },
+    "default_moves": [
+      "Fury-Attack"
+    ]
+  },
+  "Pidgey": {
+    "name": "Pidgey",
+    "pokedex_number": 16,
+    "gen": 1,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 40,
+      "atk": 45,
+      "def": 40,
+      "spa": 35,
+      "spd": 35,
+      "spe": 56
+    },
+    "default_moves": [
+      "Gust"
+    ]
+  },
+  "Pidgeotto": {
+    "name": "Pidgeotto",
+    "pokedex_number": 17,
+    "gen": 1,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 63,
+      "atk": 60,
+      "def": 55,
+      "spa": 50,
+      "spd": 50,
+      "spe": 71
+    },
+    "default_moves": [
+      "Gust",
+      "Sand-Attack"
+    ]
+  },
+  "Pidgeot": {
+    "name": "Pidgeot",
+    "pokedex_number": 18,
+    "gen": 1,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 83,
+      "atk": 80,
+      "def": 80,
+      "spa": 135,
+      "spd": 80,
+      "spe": 121
+    },
+    "default_moves": [
+      "Gust",
+      "Sand-Attack",
+      "Quick-Attack"
+    ]
+  },
+  "Rattata": {
+    "name": "Rattata",
+    "pokedex_number": 19,
+    "gen": 1,
+    "types": [
+      "Normal",
+      "Dark"
+    ],
+    "base_stats": {
+      "hp": 30,
+      "atk": 56,
+      "def": 35,
+      "spa": 25,
+      "spd": 35,
+      "spe": 72
+    },
+    "default_moves": [
+      "Tackle",
+      "Tail-Whip"
+    ]
+  },
+  "Raticate": {
+    "name": "Raticate",
+    "pokedex_number": 20,
+    "gen": 1,
+    "types": [
+      "Normal",
+      "Dark"
+    ],
+    "base_stats": {
+      "hp": 75,
+      "atk": 71,
+      "def": 70,
+      "spa": 40,
+      "spd": 80,
+      "spe": 77
+    },
+    "default_moves": [
+      "Tackle",
+      "Tail-Whip",
+      "Quick-Attack"
+    ]
+  },
+  "Spearow": {
+    "name": "Spearow",
+    "pokedex_number": 21,
+    "gen": 1,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 40,
+      "atk": 60,
+      "def": 30,
+      "spa": 31,
+      "spd": 31,
+      "spe": 70
+    },
+    "default_moves": [
+      "Growl",
+      "Peck"
+    ]
+  },
+  "Fearow": {
+    "name": "Fearow",
+    "pokedex_number": 22,
+    "gen": 1,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 90,
+      "def": 65,
+      "spa": 61,
+      "spd": 61,
+      "spe": 100
+    },
+    "default_moves": [
+      "Leer",
+      "Growl",
+      "Peck"
+    ]
+  },
+  "Ekans": {
+    "name": "Ekans",
+    "pokedex_number": 23,
+    "gen": 1,
+    "types": [
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 35,
+      "atk": 60,
+      "def": 44,
+      "spa": 40,
+      "spd": 54,
+      "spe": 55
+    },
+    "default_moves": [
+      "Wrap",
+      "Leer"
+    ]
+  },
+  "Arbok": {
+    "name": "Arbok",
+    "pokedex_number": 24,
+    "gen": 1,
+    "types": [
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 95,
+      "def": 69,
+      "spa": 65,
+      "spd": 79,
+      "spe": 80
+    },
+    "default_moves": [
+      "Wrap",
+      "Poison-Sting",
+      "Leer"
+    ]
+  },
+  "Pikachu": {
+    "name": "Pikachu",
+    "pokedex_number": 25,
+    "gen": 1,
+    "types": [
+      "Electric"
+    ],
+    "base_stats": {
+      "hp": 35,
+      "atk": 55,
+      "def": 40,
+      "spa": 50,
+      "spd": 50,
+      "spe": 90
+    },
+    "default_moves": [
+      "Growl",
+      "Thunder-Shock"
+    ]
+  },
+  "Raichu": {
+    "name": "Raichu",
+    "pokedex_number": 26,
+    "gen": 1,
+    "types": [
+      "Electric",
+      "Electric"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 85,
+      "def": 50,
+      "spa": 95,
+      "spd": 85,
+      "spe": 110
+    },
+    "default_moves": [
+      "Growl",
+      "Thunder-Shock",
+      "Thunder-Wave"
+    ]
+  },
+  "Sandshrew": {
+    "name": "Sandshrew",
+    "pokedex_number": 27,
+    "gen": 1,
+    "types": [
+      "Ground",
+      "Ice"
+    ],
+    "base_stats": {
+      "hp": 50,
+      "atk": 75,
+      "def": 90,
+      "spa": 10,
+      "spd": 35,
+      "spe": 40
+    },
+    "default_moves": [
+      "Scratch"
+    ]
+  },
+  "Sandslash": {
+    "name": "Sandslash",
+    "pokedex_number": 28,
+    "gen": 1,
+    "types": [
+      "Ground",
+      "Ice"
+    ],
+    "base_stats": {
+      "hp": 75,
+      "atk": 100,
+      "def": 120,
+      "spa": 25,
+      "spd": 65,
+      "spe": 65
+    },
+    "default_moves": [
+      "Scratch",
+      "Sand-Attack"
+    ]
+  },
+  "Nidoran\u2640": {
+    "name": "Nidoran\u2640",
+    "pokedex_number": 29,
+    "gen": 1,
+    "types": [
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 55,
+      "atk": 47,
+      "def": 52,
+      "spa": 40,
+      "spd": 40,
+      "spe": 41
+    },
+    "default_moves": [
+      "Tackle",
+      "Growl"
+    ]
+  },
+  "Nidorina": {
+    "name": "Nidorina",
+    "pokedex_number": 30,
+    "gen": 1,
+    "types": [
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 70,
+      "atk": 62,
+      "def": 67,
+      "spa": 55,
+      "spd": 55,
+      "spe": 56
+    },
+    "default_moves": [
+      "Scratch",
+      "Tackle",
+      "Growl"
+    ]
+  },
+  "Nidoqueen": {
+    "name": "Nidoqueen",
+    "pokedex_number": 31,
+    "gen": 1,
+    "types": [
+      "Poison",
+      "Ground"
+    ],
+    "base_stats": {
+      "hp": 90,
+      "atk": 92,
+      "def": 87,
+      "spa": 75,
+      "spd": 85,
+      "spe": 76
+    },
+    "default_moves": [
+      "Scratch",
+      "Tackle",
+      "Body-Slam",
+      "Tail-Whip"
+    ]
+  },
+  "Nidoran\u2642": {
+    "name": "Nidoran\u2642",
+    "pokedex_number": 32,
+    "gen": 1,
+    "types": [
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 46,
+      "atk": 57,
+      "def": 40,
+      "spa": 40,
+      "spd": 40,
+      "spe": 50
+    },
+    "default_moves": [
+      "Tackle",
+      "Leer"
+    ]
+  },
+  "Nidorino": {
+    "name": "Nidorino",
+    "pokedex_number": 33,
+    "gen": 1,
+    "types": [
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 61,
+      "atk": 72,
+      "def": 57,
+      "spa": 55,
+      "spd": 55,
+      "spe": 65
+    },
+    "default_moves": [
+      "Horn-Attack",
+      "Tackle",
+      "Leer"
+    ]
+  },
+  "Nidoking": {
+    "name": "Nidoking",
+    "pokedex_number": 34,
+    "gen": 1,
+    "types": [
+      "Poison",
+      "Ground"
+    ],
+    "base_stats": {
+      "hp": 81,
+      "atk": 102,
+      "def": 77,
+      "spa": 85,
+      "spd": 75,
+      "spe": 85
+    },
+    "default_moves": [
+      "Horn-Attack",
+      "Tackle",
+      "Thrash",
+      "Poison-Sting"
+    ]
+  },
+  "Clefairy": {
+    "name": "Clefairy",
+    "pokedex_number": 35,
+    "gen": 1,
+    "types": [
+      "Fairy"
+    ],
+    "base_stats": {
+      "hp": 70,
+      "atk": 45,
+      "def": 48,
+      "spa": 60,
+      "spd": 65,
+      "spe": 35
+    },
+    "default_moves": [
+      "Pound",
+      "Growl"
+    ]
+  },
+  "Clefable": {
+    "name": "Clefable",
+    "pokedex_number": 36,
+    "gen": 1,
+    "types": [
+      "Fairy"
+    ],
+    "base_stats": {
+      "hp": 95,
+      "atk": 70,
+      "def": 73,
+      "spa": 95,
+      "spd": 90,
+      "spe": 60
+    },
+    "default_moves": [
+      "Double-Slap",
+      "Sing",
+      "Minimize",
+      "Metronome"
+    ]
+  },
+  "Vulpix": {
+    "name": "Vulpix",
+    "pokedex_number": 37,
+    "gen": 1,
+    "types": [
+      "Fire",
+      "Ice"
+    ],
+    "base_stats": {
+      "hp": 38,
+      "atk": 41,
+      "def": 40,
+      "spa": 50,
+      "spd": 65,
+      "spe": 65
+    },
+    "default_moves": [
+      "Tail-Whip",
+      "Ember"
+    ]
+  },
+  "Ninetales": {
+    "name": "Ninetales",
+    "pokedex_number": 38,
+    "gen": 1,
+    "types": [
+      "Fire",
+      "Ice"
+    ],
+    "base_stats": {
+      "hp": 73,
+      "atk": 67,
+      "def": 75,
+      "spa": 81,
+      "spd": 100,
+      "spe": 109
+    },
+    "default_moves": [
+      "Tail-Whip",
+      "Roar",
+      "Ember",
+      "Quick-Attack"
+    ]
+  },
+  "Jigglypuff": {
+    "name": "Jigglypuff",
+    "pokedex_number": 39,
+    "gen": 1,
+    "types": [
+      "Normal",
+      "Fairy"
+    ],
+    "base_stats": {
+      "hp": 115,
+      "atk": 45,
+      "def": 20,
+      "spa": 45,
+      "spd": 25,
+      "spe": 20
+    },
+    "default_moves": [
+      "Sing"
+    ]
+  },
+  "Wigglytuff": {
+    "name": "Wigglytuff",
+    "pokedex_number": 40,
+    "gen": 1,
+    "types": [
+      "Normal",
+      "Fairy"
+    ],
+    "base_stats": {
+      "hp": 140,
+      "atk": 70,
+      "def": 45,
+      "spa": 85,
+      "spd": 50,
+      "spe": 45
+    },
+    "default_moves": [
+      "Double-Slap",
+      "Sing",
+      "Disable",
+      "Defense-Curl"
+    ]
+  },
+  "Zubat": {
+    "name": "Zubat",
+    "pokedex_number": 41,
+    "gen": 1,
+    "types": [
+      "Poison",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 40,
+      "atk": 45,
+      "def": 35,
+      "spa": 30,
+      "spd": 40,
+      "spe": 55
+    },
+    "default_moves": [
+      "Leech-Life"
+    ]
+  },
+  "Golbat": {
+    "name": "Golbat",
+    "pokedex_number": 42,
+    "gen": 1,
+    "types": [
+      "Poison",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 75,
+      "atk": 80,
+      "def": 70,
+      "spa": 65,
+      "spd": 75,
+      "spe": 90
+    },
+    "default_moves": [
+      "Bite",
+      "Screech",
+      "Leech-Life"
+    ]
+  },
+  "Oddish": {
+    "name": "Oddish",
+    "pokedex_number": 43,
+    "gen": 1,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 45,
+      "atk": 50,
+      "def": 55,
+      "spa": 75,
+      "spd": 65,
+      "spe": 30
+    },
+    "default_moves": [
+      "Absorb"
+    ]
+  },
+  "Gloom": {
+    "name": "Gloom",
+    "pokedex_number": 44,
+    "gen": 1,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 65,
+      "def": 70,
+      "spa": 85,
+      "spd": 75,
+      "spe": 40
+    },
+    "default_moves": [
+      "Absorb",
+      "Poison-Powder",
+      "Stun-Spore"
+    ]
+  },
+  "Vileplume": {
+    "name": "Vileplume",
+    "pokedex_number": 45,
+    "gen": 1,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 75,
+      "atk": 80,
+      "def": 85,
+      "spa": 110,
+      "spd": 90,
+      "spe": 50
+    },
+    "default_moves": [
+      "Acid",
+      "Stun-Spore",
+      "Sleep-Powder",
+      "Petal-Dance"
+    ]
+  },
+  "Paras": {
+    "name": "Paras",
+    "pokedex_number": 46,
+    "gen": 1,
+    "types": [
+      "Bug",
+      "Grass"
+    ],
+    "base_stats": {
+      "hp": 35,
+      "atk": 70,
+      "def": 55,
+      "spa": 45,
+      "spd": 55,
+      "spe": 25
+    },
+    "default_moves": [
+      "Scratch"
+    ]
+  },
+  "Parasect": {
+    "name": "Parasect",
+    "pokedex_number": 47,
+    "gen": 1,
+    "types": [
+      "Bug",
+      "Grass"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 95,
+      "def": 80,
+      "spa": 60,
+      "spd": 80,
+      "spe": 30
+    },
+    "default_moves": [
+      "Scratch",
+      "Stun-Spore",
+      "Leech-Life"
+    ]
+  },
+  "Venonat": {
+    "name": "Venonat",
+    "pokedex_number": 48,
+    "gen": 1,
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 55,
+      "def": 50,
+      "spa": 40,
+      "spd": 55,
+      "spe": 45
+    },
+    "default_moves": [
+      "Tackle",
+      "Disable"
+    ]
+  },
+  "Venomoth": {
+    "name": "Venomoth",
+    "pokedex_number": 49,
+    "gen": 1,
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 70,
+      "atk": 65,
+      "def": 60,
+      "spa": 90,
+      "spd": 75,
+      "spe": 90
+    },
+    "default_moves": [
+      "Tackle",
+      "Disable",
+      "Poison-Powder",
+      "Leech-Life"
+    ]
+  },
+  "Diglett": {
+    "name": "Diglett",
+    "pokedex_number": 50,
+    "gen": 1,
+    "types": [
+      "Ground",
+      "Ground"
+    ],
+    "base_stats": {
+      "hp": 10,
+      "atk": 55,
+      "def": 30,
+      "spa": 35,
+      "spd": 45,
+      "spe": 90
+    },
+    "default_moves": [
+      "Scratch"
+    ]
+  },
+  "Dugtrio": {
+    "name": "Dugtrio",
+    "pokedex_number": 51,
+    "gen": 1,
+    "types": [
+      "Ground",
+      "Ground"
+    ],
+    "base_stats": {
+      "hp": 35,
+      "atk": 100,
+      "def": 60,
+      "spa": 50,
+      "spd": 70,
+      "spe": 110
+    },
+    "default_moves": [
+      "Scratch",
+      "Growl",
+      "Dig"
+    ]
+  },
+  "Meowth": {
+    "name": "Meowth",
+    "pokedex_number": 52,
+    "gen": 1,
+    "types": [
+      "Normal",
+      "Dark"
+    ],
+    "base_stats": {
+      "hp": 40,
+      "atk": 35,
+      "def": 35,
+      "spa": 50,
+      "spd": 40,
+      "spe": 90
+    },
+    "default_moves": [
+      "Scratch",
+      "Growl"
+    ]
+  },
+  "Persian": {
+    "name": "Persian",
+    "pokedex_number": 53,
+    "gen": 1,
+    "types": [
+      "Normal",
+      "Dark"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 60,
+      "def": 60,
+      "spa": 75,
+      "spd": 65,
+      "spe": 115
+    },
+    "default_moves": [
+      "Scratch",
+      "Bite",
+      "Growl",
+      "Screech"
+    ]
+  },
+  "Psyduck": {
+    "name": "Psyduck",
+    "pokedex_number": 54,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 50,
+      "atk": 52,
+      "def": 48,
+      "spa": 65,
+      "spd": 50,
+      "spe": 55
+    },
+    "default_moves": [
+      "Scratch"
+    ]
+  },
+  "Golduck": {
+    "name": "Golduck",
+    "pokedex_number": 55,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 80,
+      "atk": 82,
+      "def": 78,
+      "spa": 95,
+      "spd": 80,
+      "spe": 85
+    },
+    "default_moves": [
+      "Scratch",
+      "Tail-Whip",
+      "Disable"
+    ]
+  },
+  "Mankey": {
+    "name": "Mankey",
+    "pokedex_number": 56,
+    "gen": 1,
+    "types": [
+      "Fighting"
+    ],
+    "base_stats": {
+      "hp": 40,
+      "atk": 80,
+      "def": 35,
+      "spa": 35,
+      "spd": 45,
+      "spe": 70
+    },
+    "default_moves": [
+      "Scratch",
+      "Leer"
+    ]
+  },
+  "Primeape": {
+    "name": "Primeape",
+    "pokedex_number": 57,
+    "gen": 1,
+    "types": [
+      "Fighting"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 105,
+      "def": 60,
+      "spa": 60,
+      "spd": 70,
+      "spe": 95
+    },
+    "default_moves": [
+      "Karate-Chop",
+      "Scratch",
+      "Leer",
+      "Fury-Swipes"
+    ]
+  },
+  "Growlithe": {
+    "name": "Growlithe",
+    "pokedex_number": 58,
+    "gen": 1,
+    "types": [
+      "Fire"
+    ],
+    "base_stats": {
+      "hp": 55,
+      "atk": 70,
+      "def": 45,
+      "spa": 70,
+      "spd": 50,
+      "spe": 60
+    },
+    "default_moves": [
+      "Bite",
+      "Roar"
+    ]
+  },
+  "Arcanine": {
+    "name": "Arcanine",
+    "pokedex_number": 59,
+    "gen": 1,
+    "types": [
+      "Fire"
+    ],
+    "base_stats": {
+      "hp": 90,
+      "atk": 110,
+      "def": 80,
+      "spa": 100,
+      "spd": 80,
+      "spe": 95
+    },
+    "default_moves": [
+      "Take-Down",
+      "Leer",
+      "Roar",
+      "Ember"
+    ]
+  },
+  "Poliwag": {
+    "name": "Poliwag",
+    "pokedex_number": 60,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 40,
+      "atk": 50,
+      "def": 40,
+      "spa": 40,
+      "spd": 40,
+      "spe": 90
+    },
+    "default_moves": [
+      "Bubble"
+    ]
+  },
+  "Poliwhirl": {
+    "name": "Poliwhirl",
+    "pokedex_number": 61,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 65,
+      "def": 65,
+      "spa": 50,
+      "spd": 50,
+      "spe": 90
+    },
+    "default_moves": [
+      "Water-Gun",
+      "Hypnosis",
+      "Bubble"
+    ]
+  },
+  "Poliwrath": {
+    "name": "Poliwrath",
+    "pokedex_number": 62,
+    "gen": 1,
+    "types": [
+      "Water",
+      "Fighting"
+    ],
+    "base_stats": {
+      "hp": 90,
+      "atk": 95,
+      "def": 95,
+      "spa": 70,
+      "spd": 90,
+      "spe": 70
+    },
+    "default_moves": [
+      "Double-Slap",
+      "Body-Slam",
+      "Water-Gun",
+      "Hypnosis"
+    ]
+  },
+  "Abra": {
+    "name": "Abra",
+    "pokedex_number": 63,
+    "gen": 1,
+    "types": [
+      "Psychic"
+    ],
+    "base_stats": {
+      "hp": 25,
+      "atk": 20,
+      "def": 15,
+      "spa": 105,
+      "spd": 55,
+      "spe": 90
+    },
+    "default_moves": [
+      "Teleport"
+    ]
+  },
+  "Kadabra": {
+    "name": "Kadabra",
+    "pokedex_number": 64,
+    "gen": 1,
+    "types": [
+      "Psychic"
+    ],
+    "base_stats": {
+      "hp": 40,
+      "atk": 35,
+      "def": 30,
+      "spa": 120,
+      "spd": 70,
+      "spe": 105
+    },
+    "default_moves": [
+      "Disable",
+      "Confusion",
+      "Teleport"
+    ]
+  },
+  "Alakazam": {
+    "name": "Alakazam",
+    "pokedex_number": 65,
+    "gen": 1,
+    "types": [
+      "Psychic"
+    ],
+    "base_stats": {
+      "hp": 55,
+      "atk": 50,
+      "def": 65,
+      "spa": 175,
+      "spd": 105,
+      "spe": 150
+    },
+    "default_moves": [
+      "Disable",
+      "Confusion",
+      "Teleport"
+    ]
+  },
+  "Machop": {
+    "name": "Machop",
+    "pokedex_number": 66,
+    "gen": 1,
+    "types": [
+      "Fighting"
+    ],
+    "base_stats": {
+      "hp": 70,
+      "atk": 80,
+      "def": 50,
+      "spa": 35,
+      "spd": 35,
+      "spe": 35
+    },
+    "default_moves": [
+      "Karate-Chop"
+    ]
+  },
+  "Machoke": {
+    "name": "Machoke",
+    "pokedex_number": 67,
+    "gen": 1,
+    "types": [
+      "Fighting"
+    ],
+    "base_stats": {
+      "hp": 80,
+      "atk": 100,
+      "def": 70,
+      "spa": 50,
+      "spd": 60,
+      "spe": 45
+    },
+    "default_moves": [
+      "Karate-Chop",
+      "Leer",
+      "Low-Kick"
+    ]
+  },
+  "Machamp": {
+    "name": "Machamp",
+    "pokedex_number": 68,
+    "gen": 1,
+    "types": [
+      "Fighting"
+    ],
+    "base_stats": {
+      "hp": 90,
+      "atk": 130,
+      "def": 80,
+      "spa": 65,
+      "spd": 85,
+      "spe": 55
+    },
+    "default_moves": [
+      "Karate-Chop",
+      "Leer",
+      "Low-Kick"
+    ]
+  },
+  "Bellsprout": {
+    "name": "Bellsprout",
+    "pokedex_number": 69,
+    "gen": 1,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 50,
+      "atk": 75,
+      "def": 35,
+      "spa": 70,
+      "spd": 30,
+      "spe": 40
+    },
+    "default_moves": [
+      "Vine-Whip",
+      "Growth"
+    ]
+  },
+  "Weepinbell": {
+    "name": "Weepinbell",
+    "pokedex_number": 70,
+    "gen": 1,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 90,
+      "def": 50,
+      "spa": 85,
+      "spd": 45,
+      "spe": 55
+    },
+    "default_moves": [
+      "Vine-Whip",
+      "Wrap",
+      "Growth"
+    ]
+  },
+  "Victreebel": {
+    "name": "Victreebel",
+    "pokedex_number": 71,
+    "gen": 1,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 80,
+      "atk": 105,
+      "def": 65,
+      "spa": 100,
+      "spd": 70,
+      "spe": 70
+    },
+    "default_moves": [
+      "Acid",
+      "Razor-Leaf",
+      "Stun-Spore",
+      "Sleep-Powder"
+    ]
+  },
+  "Tentacool": {
+    "name": "Tentacool",
+    "pokedex_number": 72,
+    "gen": 1,
+    "types": [
+      "Water",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 40,
+      "atk": 40,
+      "def": 35,
+      "spa": 50,
+      "spd": 100,
+      "spe": 70
+    },
+    "default_moves": [
+      "Acid"
+    ]
+  },
+  "Tentacruel": {
+    "name": "Tentacruel",
+    "pokedex_number": 73,
+    "gen": 1,
+    "types": [
+      "Water",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 80,
+      "atk": 70,
+      "def": 65,
+      "spa": 80,
+      "spd": 120,
+      "spe": 100
+    },
+    "default_moves": [
+      "Wrap",
+      "Supersonic",
+      "Acid"
+    ]
+  },
+  "Geodude": {
+    "name": "Geodude",
+    "pokedex_number": 74,
+    "gen": 1,
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "base_stats": {
+      "hp": 40,
+      "atk": 80,
+      "def": 100,
+      "spa": 30,
+      "spd": 30,
+      "spe": 20
+    },
+    "default_moves": [
+      "Tackle"
+    ]
+  },
+  "Graveler": {
+    "name": "Graveler",
+    "pokedex_number": 75,
+    "gen": 1,
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "base_stats": {
+      "hp": 55,
+      "atk": 95,
+      "def": 115,
+      "spa": 45,
+      "spd": 45,
+      "spe": 35
+    },
+    "default_moves": [
+      "Tackle",
+      "Defense-Curl"
+    ]
+  },
+  "Golem": {
+    "name": "Golem",
+    "pokedex_number": 76,
+    "gen": 1,
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "base_stats": {
+      "hp": 80,
+      "atk": 120,
+      "def": 130,
+      "spa": 55,
+      "spd": 65,
+      "spe": 45
+    },
+    "default_moves": [
+      "Tackle",
+      "Defense-Curl"
+    ]
+  },
+  "Ponyta": {
+    "name": "Ponyta",
+    "pokedex_number": 77,
+    "gen": 1,
+    "types": [
+      "Fire"
+    ],
+    "base_stats": {
+      "hp": 50,
+      "atk": 85,
+      "def": 55,
+      "spa": 65,
+      "spd": 65,
+      "spe": 90
+    },
+    "default_moves": [
+      "Ember"
+    ]
+  },
+  "Rapidash": {
+    "name": "Rapidash",
+    "pokedex_number": 78,
+    "gen": 1,
+    "types": [
+      "Fire"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 100,
+      "def": 70,
+      "spa": 80,
+      "spd": 80,
+      "spe": 105
+    },
+    "default_moves": [
+      "Stomp",
+      "Tail-Whip",
+      "Growl",
+      "Ember"
+    ]
+  },
+  "Slowpoke": {
+    "name": "Slowpoke",
+    "pokedex_number": 79,
+    "gen": 1,
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "base_stats": {
+      "hp": 90,
+      "atk": 65,
+      "def": 65,
+      "spa": 40,
+      "spd": 40,
+      "spe": 15
+    },
+    "default_moves": [
+      "Confusion"
+    ]
+  },
+  "Slowbro": {
+    "name": "Slowbro",
+    "pokedex_number": 80,
+    "gen": 1,
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "base_stats": {
+      "hp": 95,
+      "atk": 75,
+      "def": 180,
+      "spa": 130,
+      "spd": 80,
+      "spe": 30
+    },
+    "default_moves": [
+      "Headbutt",
+      "Disable",
+      "Confusion"
+    ]
+  },
+  "Magnemite": {
+    "name": "Magnemite",
+    "pokedex_number": 81,
+    "gen": 1,
+    "types": [
+      "Electric",
+      "Steel"
+    ],
+    "base_stats": {
+      "hp": 25,
+      "atk": 35,
+      "def": 70,
+      "spa": 95,
+      "spd": 55,
+      "spe": 45
+    },
+    "default_moves": [
+      "Tackle"
+    ]
+  },
+  "Magneton": {
+    "name": "Magneton",
+    "pokedex_number": 82,
+    "gen": 1,
+    "types": [
+      "Electric",
+      "Steel"
+    ],
+    "base_stats": {
+      "hp": 50,
+      "atk": 60,
+      "def": 95,
+      "spa": 120,
+      "spd": 70,
+      "spe": 70
+    },
+    "default_moves": [
+      "Tackle",
+      "Sonic-Boom",
+      "Thunder-Shock"
+    ]
+  },
+  "Farfetch'd": {
+    "name": "Farfetch'd",
+    "pokedex_number": 83,
+    "gen": 1,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 52,
+      "atk": 90,
+      "def": 55,
+      "spa": 58,
+      "spd": 62,
+      "spe": 60
+    },
+    "default_moves": [
+      "Sand-Attack",
+      "Peck"
+    ]
+  },
+  "Doduo": {
+    "name": "Doduo",
+    "pokedex_number": 84,
+    "gen": 1,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 35,
+      "atk": 85,
+      "def": 45,
+      "spa": 35,
+      "spd": 35,
+      "spe": 75
+    },
+    "default_moves": [
+      "Peck"
+    ]
+  },
+  "Dodrio": {
+    "name": "Dodrio",
+    "pokedex_number": 85,
+    "gen": 1,
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 110,
+      "def": 70,
+      "spa": 60,
+      "spd": 60,
+      "spe": 110
+    },
+    "default_moves": [
+      "Fury-Attack",
+      "Growl",
+      "Peck"
+    ]
+  },
+  "Seel": {
+    "name": "Seel",
+    "pokedex_number": 86,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 45,
+      "def": 55,
+      "spa": 45,
+      "spd": 70,
+      "spe": 45
+    },
+    "default_moves": [
+      "Headbutt"
+    ]
+  },
+  "Dewgong": {
+    "name": "Dewgong",
+    "pokedex_number": 87,
+    "gen": 1,
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "base_stats": {
+      "hp": 90,
+      "atk": 70,
+      "def": 80,
+      "spa": 70,
+      "spd": 95,
+      "spe": 70
+    },
+    "default_moves": [
+      "Headbutt",
+      "Growl",
+      "Aurora-Beam"
+    ]
+  },
+  "Grimer": {
+    "name": "Grimer",
+    "pokedex_number": 88,
+    "gen": 1,
+    "types": [
+      "Poison",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 80,
+      "atk": 80,
+      "def": 50,
+      "spa": 40,
+      "spd": 50,
+      "spe": 25
+    },
+    "default_moves": [
+      "Pound",
+      "Disable"
+    ]
+  },
+  "Muk": {
+    "name": "Muk",
+    "pokedex_number": 89,
+    "gen": 1,
+    "types": [
+      "Poison",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 105,
+      "atk": 105,
+      "def": 75,
+      "spa": 65,
+      "spd": 100,
+      "spe": 50
+    },
+    "default_moves": [
+      "Pound",
+      "Disable",
+      "Poison-Gas"
+    ]
+  },
+  "Shellder": {
+    "name": "Shellder",
+    "pokedex_number": 90,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 30,
+      "atk": 65,
+      "def": 100,
+      "spa": 45,
+      "spd": 25,
+      "spe": 40
+    },
+    "default_moves": [
+      "Tackle",
+      "Withdraw"
+    ]
+  },
+  "Cloyster": {
+    "name": "Cloyster",
+    "pokedex_number": 91,
+    "gen": 1,
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "base_stats": {
+      "hp": 50,
+      "atk": 95,
+      "def": 180,
+      "spa": 85,
+      "spd": 45,
+      "spe": 70
+    },
+    "default_moves": [
+      "Supersonic",
+      "Aurora-Beam",
+      "Withdraw",
+      "Clamp"
+    ]
+  },
+  "Gastly": {
+    "name": "Gastly",
+    "pokedex_number": 92,
+    "gen": 1,
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 30,
+      "atk": 35,
+      "def": 30,
+      "spa": 100,
+      "spd": 35,
+      "spe": 80
+    },
+    "default_moves": [
+      "Night-Shade",
+      "Confuse-Ray",
+      "Lick"
+    ]
+  },
+  "Haunter": {
+    "name": "Haunter",
+    "pokedex_number": 93,
+    "gen": 1,
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 45,
+      "atk": 50,
+      "def": 45,
+      "spa": 115,
+      "spd": 55,
+      "spe": 95
+    },
+    "default_moves": [
+      "Night-Shade",
+      "Confuse-Ray",
+      "Lick"
+    ]
+  },
+  "Gengar": {
+    "name": "Gengar",
+    "pokedex_number": 94,
+    "gen": 1,
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 65,
+      "def": 80,
+      "spa": 170,
+      "spd": 95,
+      "spe": 130
+    },
+    "default_moves": [
+      "Night-Shade",
+      "Confuse-Ray",
+      "Lick"
+    ]
+  },
+  "Onix": {
+    "name": "Onix",
+    "pokedex_number": 95,
+    "gen": 1,
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "base_stats": {
+      "hp": 35,
+      "atk": 45,
+      "def": 160,
+      "spa": 30,
+      "spd": 45,
+      "spe": 70
+    },
+    "default_moves": [
+      "Tackle",
+      "Screech"
+    ]
+  },
+  "Drowzee": {
+    "name": "Drowzee",
+    "pokedex_number": 96,
+    "gen": 1,
+    "types": [
+      "Psychic"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 48,
+      "def": 45,
+      "spa": 43,
+      "spd": 90,
+      "spe": 42
+    },
+    "default_moves": [
+      "Pound",
+      "Hypnosis"
+    ]
+  },
+  "Hypno": {
+    "name": "Hypno",
+    "pokedex_number": 97,
+    "gen": 1,
+    "types": [
+      "Psychic"
+    ],
+    "base_stats": {
+      "hp": 85,
+      "atk": 73,
+      "def": 70,
+      "spa": 73,
+      "spd": 115,
+      "spe": 67
+    },
+    "default_moves": [
+      "Pound",
+      "Disable",
+      "Confusion",
+      "Hypnosis"
+    ]
+  },
+  "Krabby": {
+    "name": "Krabby",
+    "pokedex_number": 98,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 30,
+      "atk": 105,
+      "def": 90,
+      "spa": 25,
+      "spd": 25,
+      "spe": 50
+    },
+    "default_moves": [
+      "Leer",
+      "Bubble"
+    ]
+  },
+  "Kingler": {
+    "name": "Kingler",
+    "pokedex_number": 99,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 55,
+      "atk": 130,
+      "def": 115,
+      "spa": 50,
+      "spd": 50,
+      "spe": 75
+    },
+    "default_moves": [
+      "Vice-Grip",
+      "Leer",
+      "Bubble"
+    ]
+  },
+  "Voltorb": {
+    "name": "Voltorb",
+    "pokedex_number": 100,
+    "gen": 1,
+    "types": [
+      "Electric"
+    ],
+    "base_stats": {
+      "hp": 40,
+      "atk": 30,
+      "def": 50,
+      "spa": 55,
+      "spd": 55,
+      "spe": 100
+    },
+    "default_moves": [
+      "Tackle",
+      "Screech"
+    ]
+  },
+  "Electrode": {
+    "name": "Electrode",
+    "pokedex_number": 101,
+    "gen": 1,
+    "types": [
+      "Electric"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 50,
+      "def": 70,
+      "spa": 80,
+      "spd": 80,
+      "spe": 150
+    },
+    "default_moves": [
+      "Tackle",
+      "Sonic-Boom",
+      "Screech"
+    ]
+  },
+  "Exeggcute": {
+    "name": "Exeggcute",
+    "pokedex_number": 102,
+    "gen": 1,
+    "types": [
+      "Grass",
+      "Psychic"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 40,
+      "def": 80,
+      "spa": 60,
+      "spd": 45,
+      "spe": 40
+    },
+    "default_moves": [
+      "Hypnosis",
+      "Barrage"
+    ]
+  },
+  "Exeggutor": {
+    "name": "Exeggutor",
+    "pokedex_number": 103,
+    "gen": 1,
+    "types": [
+      "Grass",
+      "Psychic"
+    ],
+    "base_stats": {
+      "hp": 95,
+      "atk": 105,
+      "def": 85,
+      "spa": 125,
+      "spd": 75,
+      "spe": 45
+    },
+    "default_moves": [
+      "Hypnosis",
+      "Barrage"
+    ]
+  },
+  "Cubone": {
+    "name": "Cubone",
+    "pokedex_number": 104,
+    "gen": 1,
+    "types": [
+      "Ground"
+    ],
+    "base_stats": {
+      "hp": 50,
+      "atk": 50,
+      "def": 95,
+      "spa": 40,
+      "spd": 50,
+      "spe": 35
+    },
+    "default_moves": [
+      "Growl",
+      "Bone-Club"
+    ]
+  },
+  "Marowak": {
+    "name": "Marowak",
+    "pokedex_number": 105,
+    "gen": 1,
+    "types": [
+      "Ground",
+      "Fire"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 80,
+      "def": 110,
+      "spa": 50,
+      "spd": 80,
+      "spe": 45
+    },
+    "default_moves": [
+      "Leer",
+      "Growl",
+      "Focus-Energy",
+      "Bone-Club"
+    ]
+  },
+  "Hitmonlee": {
+    "name": "Hitmonlee",
+    "pokedex_number": 106,
+    "gen": 1,
+    "types": [
+      "Fighting"
+    ],
+    "base_stats": {
+      "hp": 50,
+      "atk": 120,
+      "def": 53,
+      "spa": 35,
+      "spd": 110,
+      "spe": 87
+    },
+    "default_moves": [
+      "Double-Kick",
+      "Meditate"
+    ]
+  },
+  "Hitmonchan": {
+    "name": "Hitmonchan",
+    "pokedex_number": 107,
+    "gen": 1,
+    "types": [
+      "Fighting"
+    ],
+    "base_stats": {
+      "hp": 50,
+      "atk": 105,
+      "def": 79,
+      "spa": 35,
+      "spd": 110,
+      "spe": 76
+    },
+    "default_moves": [
+      "Comet-Punch",
+      "Agility"
+    ]
+  },
+  "Lickitung": {
+    "name": "Lickitung",
+    "pokedex_number": 108,
+    "gen": 1,
+    "types": [
+      "Normal"
+    ],
+    "base_stats": {
+      "hp": 90,
+      "atk": 55,
+      "def": 75,
+      "spa": 60,
+      "spd": 75,
+      "spe": 30
+    },
+    "default_moves": [
+      "Wrap",
+      "Supersonic"
+    ]
+  },
+  "Koffing": {
+    "name": "Koffing",
+    "pokedex_number": 109,
+    "gen": 1,
+    "types": [
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 40,
+      "atk": 65,
+      "def": 95,
+      "spa": 60,
+      "spd": 45,
+      "spe": 35
+    },
+    "default_moves": [
+      "Tackle",
+      "Smog"
+    ]
+  },
+  "Weezing": {
+    "name": "Weezing",
+    "pokedex_number": 110,
+    "gen": 1,
+    "types": [
+      "Poison"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 90,
+      "def": 120,
+      "spa": 85,
+      "spd": 70,
+      "spe": 60
+    },
+    "default_moves": [
+      "Tackle",
+      "Smog",
+      "Sludge"
+    ]
+  },
+  "Rhyhorn": {
+    "name": "Rhyhorn",
+    "pokedex_number": 111,
+    "gen": 1,
+    "types": [
+      "Ground",
+      "Rock"
+    ],
+    "base_stats": {
+      "hp": 80,
+      "atk": 85,
+      "def": 95,
+      "spa": 30,
+      "spd": 30,
+      "spe": 25
+    },
+    "default_moves": [
+      "Horn-Attack"
+    ]
+  },
+  "Rhydon": {
+    "name": "Rhydon",
+    "pokedex_number": 112,
+    "gen": 1,
+    "types": [
+      "Ground",
+      "Rock"
+    ],
+    "base_stats": {
+      "hp": 105,
+      "atk": 130,
+      "def": 120,
+      "spa": 45,
+      "spd": 45,
+      "spe": 40
+    },
+    "default_moves": [
+      "Stomp",
+      "Horn-Attack",
+      "Fury-Attack",
+      "Tail-Whip"
+    ]
+  },
+  "Chansey": {
+    "name": "Chansey",
+    "pokedex_number": 113,
+    "gen": 1,
+    "types": [
+      "Normal"
+    ],
+    "base_stats": {
+      "hp": 250,
+      "atk": 5,
+      "def": 5,
+      "spa": 35,
+      "spd": 105,
+      "spe": 50
+    },
+    "default_moves": [
+      "Pound",
+      "Double-Slap"
+    ]
+  },
+  "Tangela": {
+    "name": "Tangela",
+    "pokedex_number": 114,
+    "gen": 1,
+    "types": [
+      "Grass"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 55,
+      "def": 115,
+      "spa": 100,
+      "spd": 40,
+      "spe": 60
+    },
+    "default_moves": [
+      "Bind",
+      "Constrict"
+    ]
+  },
+  "Kangaskhan": {
+    "name": "Kangaskhan",
+    "pokedex_number": 115,
+    "gen": 1,
+    "types": [
+      "Normal"
+    ],
+    "base_stats": {
+      "hp": 105,
+      "atk": 125,
+      "def": 100,
+      "spa": 60,
+      "spd": 100,
+      "spe": 100
+    },
+    "default_moves": [
+      "Comet-Punch",
+      "Rage"
+    ]
+  },
+  "Horsea": {
+    "name": "Horsea",
+    "pokedex_number": 116,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 30,
+      "atk": 40,
+      "def": 70,
+      "spa": 70,
+      "spd": 25,
+      "spe": 60
+    },
+    "default_moves": [
+      "Bubble"
+    ]
+  },
+  "Seadra": {
+    "name": "Seadra",
+    "pokedex_number": 117,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 55,
+      "atk": 65,
+      "def": 95,
+      "spa": 95,
+      "spd": 45,
+      "spe": 85
+    },
+    "default_moves": [
+      "Smokescreen",
+      "Bubble"
+    ]
+  },
+  "Goldeen": {
+    "name": "Goldeen",
+    "pokedex_number": 118,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 45,
+      "atk": 67,
+      "def": 60,
+      "spa": 35,
+      "spd": 50,
+      "spe": 63
+    },
+    "default_moves": [
+      "Tail-Whip",
+      "Peck"
+    ]
+  },
+  "Seaking": {
+    "name": "Seaking",
+    "pokedex_number": 119,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 80,
+      "atk": 92,
+      "def": 65,
+      "spa": 65,
+      "spd": 80,
+      "spe": 68
+    },
+    "default_moves": [
+      "Tail-Whip",
+      "Supersonic",
+      "Peck"
+    ]
+  },
+  "Staryu": {
+    "name": "Staryu",
+    "pokedex_number": 120,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 30,
+      "atk": 45,
+      "def": 55,
+      "spa": 70,
+      "spd": 55,
+      "spe": 85
+    },
+    "default_moves": [
+      "Tackle"
+    ]
+  },
+  "Starmie": {
+    "name": "Starmie",
+    "pokedex_number": 121,
+    "gen": 1,
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 75,
+      "def": 85,
+      "spa": 100,
+      "spd": 85,
+      "spe": 115
+    },
+    "default_moves": [
+      "Tackle",
+      "Water-Gun",
+      "Harden"
+    ]
+  },
+  "Mr. Mime": {
+    "name": "Mr. Mime",
+    "pokedex_number": 122,
+    "gen": 1,
+    "types": [
+      "Psychic",
+      "Fairy"
+    ],
+    "base_stats": {
+      "hp": 40,
+      "atk": 45,
+      "def": 65,
+      "spa": 100,
+      "spd": 120,
+      "spe": 90
+    },
+    "default_moves": [
+      "Confusion",
+      "Barrier"
+    ]
+  },
+  "Scyther": {
+    "name": "Scyther",
+    "pokedex_number": 123,
+    "gen": 1,
+    "types": [
+      "Bug",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 70,
+      "atk": 110,
+      "def": 80,
+      "spa": 55,
+      "spd": 80,
+      "spe": 105
+    },
+    "default_moves": [
+      "Quick-Attack"
+    ]
+  },
+  "Jynx": {
+    "name": "Jynx",
+    "pokedex_number": 124,
+    "gen": 1,
+    "types": [
+      "Ice",
+      "Psychic"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 50,
+      "def": 35,
+      "spa": 115,
+      "spd": 95,
+      "spe": 95
+    },
+    "default_moves": [
+      "Pound",
+      "Lovely-Kiss"
+    ]
+  },
+  "Electabuzz": {
+    "name": "Electabuzz",
+    "pokedex_number": 125,
+    "gen": 1,
+    "types": [
+      "Electric"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 83,
+      "def": 57,
+      "spa": 95,
+      "spd": 85,
+      "spe": 105
+    },
+    "default_moves": [
+      "Leer",
+      "Quick-Attack"
+    ]
+  },
+  "Magmar": {
+    "name": "Magmar",
+    "pokedex_number": 126,
+    "gen": 1,
+    "types": [
+      "Fire"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 95,
+      "def": 57,
+      "spa": 100,
+      "spd": 85,
+      "spe": 93
+    },
+    "default_moves": [
+      "Ember"
+    ]
+  },
+  "Pinsir": {
+    "name": "Pinsir",
+    "pokedex_number": 127,
+    "gen": 1,
+    "types": [
+      "Bug"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 155,
+      "def": 120,
+      "spa": 65,
+      "spd": 90,
+      "spe": 105
+    },
+    "default_moves": [
+      "Vice-Grip"
+    ]
+  },
+  "Tauros": {
+    "name": "Tauros",
+    "pokedex_number": 128,
+    "gen": 1,
+    "types": [
+      "Normal"
+    ],
+    "base_stats": {
+      "hp": 75,
+      "atk": 100,
+      "def": 95,
+      "spa": 40,
+      "spd": 70,
+      "spe": 110
+    },
+    "default_moves": [
+      "Tackle"
+    ]
+  },
+  "Magikarp": {
+    "name": "Magikarp",
+    "pokedex_number": 129,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 20,
+      "atk": 10,
+      "def": 55,
+      "spa": 15,
+      "spd": 20,
+      "spe": 80
+    },
+    "default_moves": [
+      "Splash"
+    ]
+  },
+  "Gyarados": {
+    "name": "Gyarados",
+    "pokedex_number": 130,
+    "gen": 1,
+    "types": [
+      "Water",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 95,
+      "atk": 155,
+      "def": 109,
+      "spa": 70,
+      "spd": 130,
+      "spe": 81
+    },
+    "default_moves": [
+      "Leer",
+      "Bite",
+      "Hydro-Pump",
+      "Dragon-Rage"
+    ]
+  },
+  "Lapras": {
+    "name": "Lapras",
+    "pokedex_number": 131,
+    "gen": 1,
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "base_stats": {
+      "hp": 130,
+      "atk": 85,
+      "def": 80,
+      "spa": 85,
+      "spd": 95,
+      "spe": 60
+    },
+    "default_moves": [
+      "Growl",
+      "Water-Gun"
+    ]
+  },
+  "Ditto": {
+    "name": "Ditto",
+    "pokedex_number": 132,
+    "gen": 1,
+    "types": [
+      "Normal"
+    ],
+    "base_stats": {
+      "hp": 48,
+      "atk": 48,
+      "def": 48,
+      "spa": 48,
+      "spd": 48,
+      "spe": 48
+    },
+    "default_moves": [
+      "Transform"
+    ]
+  },
+  "Eevee": {
+    "name": "Eevee",
+    "pokedex_number": 133,
+    "gen": 1,
+    "types": [
+      "Normal"
+    ],
+    "base_stats": {
+      "hp": 55,
+      "atk": 55,
+      "def": 50,
+      "spa": 45,
+      "spd": 65,
+      "spe": 55
+    },
+    "default_moves": [
+      "Sand-Attack",
+      "Tackle"
+    ]
+  },
+  "Vaporeon": {
+    "name": "Vaporeon",
+    "pokedex_number": 134,
+    "gen": 1,
+    "types": [
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 130,
+      "atk": 65,
+      "def": 60,
+      "spa": 110,
+      "spd": 95,
+      "spe": 65
+    },
+    "default_moves": [
+      "Sand-Attack",
+      "Tackle",
+      "Water-Gun",
+      "Quick-Attack"
+    ]
+  },
+  "Jolteon": {
+    "name": "Jolteon",
+    "pokedex_number": 135,
+    "gen": 1,
+    "types": [
+      "Electric"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 65,
+      "def": 60,
+      "spa": 110,
+      "spd": 95,
+      "spe": 130
+    },
+    "default_moves": [
+      "Sand-Attack",
+      "Tackle",
+      "Thunder-Shock",
+      "Quick-Attack"
+    ]
+  },
+  "Flareon": {
+    "name": "Flareon",
+    "pokedex_number": 136,
+    "gen": 1,
+    "types": [
+      "Fire"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 130,
+      "def": 60,
+      "spa": 95,
+      "spd": 110,
+      "spe": 65
+    },
+    "default_moves": [
+      "Sand-Attack",
+      "Tackle",
+      "Ember",
+      "Quick-Attack"
+    ]
+  },
+  "Porygon": {
+    "name": "Porygon",
+    "pokedex_number": 137,
+    "gen": 1,
+    "types": [
+      "Normal"
+    ],
+    "base_stats": {
+      "hp": 65,
+      "atk": 60,
+      "def": 70,
+      "spa": 85,
+      "spd": 75,
+      "spe": 40
+    },
+    "default_moves": [
+      "Tackle",
+      "Sharpen",
+      "Conversion"
+    ]
+  },
+  "Omanyte": {
+    "name": "Omanyte",
+    "pokedex_number": 138,
+    "gen": 1,
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 35,
+      "atk": 40,
+      "def": 100,
+      "spa": 90,
+      "spd": 55,
+      "spe": 35
+    },
+    "default_moves": [
+      "Water-Gun",
+      "Withdraw"
+    ]
+  },
+  "Omastar": {
+    "name": "Omastar",
+    "pokedex_number": 139,
+    "gen": 1,
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 70,
+      "atk": 60,
+      "def": 125,
+      "spa": 115,
+      "spd": 70,
+      "spe": 55
+    },
+    "default_moves": [
+      "Horn-Attack",
+      "Water-Gun",
+      "Withdraw"
+    ]
+  },
+  "Kabuto": {
+    "name": "Kabuto",
+    "pokedex_number": 140,
+    "gen": 1,
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 30,
+      "atk": 80,
+      "def": 90,
+      "spa": 55,
+      "spd": 45,
+      "spe": 55
+    },
+    "default_moves": [
+      "Scratch",
+      "Harden"
+    ]
+  },
+  "Kabutops": {
+    "name": "Kabutops",
+    "pokedex_number": 141,
+    "gen": 1,
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "base_stats": {
+      "hp": 60,
+      "atk": 115,
+      "def": 105,
+      "spa": 65,
+      "spd": 70,
+      "spe": 80
+    },
+    "default_moves": [
+      "Scratch",
+      "Absorb",
+      "Harden"
+    ]
+  },
+  "Aerodactyl": {
+    "name": "Aerodactyl",
+    "pokedex_number": 142,
+    "gen": 1,
+    "types": [
+      "Rock",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 80,
+      "atk": 135,
+      "def": 85,
+      "spa": 70,
+      "spd": 95,
+      "spe": 150
+    },
+    "default_moves": [
+      "Wing-Attack",
+      "Agility"
+    ]
+  },
+  "Snorlax": {
+    "name": "Snorlax",
+    "pokedex_number": 143,
+    "gen": 1,
+    "types": [
+      "Normal"
+    ],
+    "base_stats": {
+      "hp": 160,
+      "atk": 110,
+      "def": 65,
+      "spa": 65,
+      "spd": 110,
+      "spe": 30
+    },
+    "default_moves": [
+      "Headbutt",
+      "Amnesia",
+      "Rest"
+    ]
+  },
+  "Articuno": {
+    "name": "Articuno",
+    "pokedex_number": 144,
+    "gen": 1,
+    "types": [
+      "Ice",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 90,
+      "atk": 85,
+      "def": 100,
+      "spa": 95,
+      "spd": 125,
+      "spe": 85
+    },
+    "default_moves": [
+      "Ice-Beam",
+      "Peck"
+    ]
+  },
+  "Zapdos": {
+    "name": "Zapdos",
+    "pokedex_number": 145,
+    "gen": 1,
+    "types": [
+      "Electric",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 90,
+      "atk": 90,
+      "def": 85,
+      "spa": 125,
+      "spd": 90,
+      "spe": 100
+    },
+    "default_moves": [
+      "Drill-Peck",
+      "Thunder-Shock"
+    ]
+  },
+  "Moltres": {
+    "name": "Moltres",
+    "pokedex_number": 146,
+    "gen": 1,
+    "types": [
+      "Fire",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 90,
+      "atk": 100,
+      "def": 90,
+      "spa": 125,
+      "spd": 85,
+      "spe": 90
+    },
+    "default_moves": [
+      "Peck",
+      "Fire-Spin"
+    ]
+  },
+  "Dratini": {
+    "name": "Dratini",
+    "pokedex_number": 147,
+    "gen": 1,
+    "types": [
+      "Dragon"
+    ],
+    "base_stats": {
+      "hp": 41,
+      "atk": 64,
+      "def": 45,
+      "spa": 50,
+      "spd": 50,
+      "spe": 50
+    },
+    "default_moves": [
+      "Wrap",
+      "Leer"
+    ]
+  },
+  "Dragonair": {
+    "name": "Dragonair",
+    "pokedex_number": 148,
+    "gen": 1,
+    "types": [
+      "Dragon"
+    ],
+    "base_stats": {
+      "hp": 61,
+      "atk": 84,
+      "def": 65,
+      "spa": 70,
+      "spd": 70,
+      "spe": 70
+    },
+    "default_moves": [
+      "Wrap",
+      "Leer",
+      "Thunder-Wave"
+    ]
+  },
+  "Dragonite": {
+    "name": "Dragonite",
+    "pokedex_number": 149,
+    "gen": 1,
+    "types": [
+      "Dragon",
+      "Flying"
+    ],
+    "base_stats": {
+      "hp": 91,
+      "atk": 134,
+      "def": 95,
+      "spa": 100,
+      "spd": 100,
+      "spe": 80
+    },
+    "default_moves": [
+      "Wrap",
+      "Leer",
+      "Thunder-Wave",
+      "Agility"
+    ]
+  },
+  "Mewtwo": {
+    "name": "Mewtwo",
+    "pokedex_number": 150,
+    "gen": 1,
+    "types": [
+      "Psychic"
+    ],
+    "base_stats": {
+      "hp": 106,
+      "atk": 150,
+      "def": 70,
+      "spa": 194,
+      "spd": 120,
+      "spe": 140
+    },
+    "default_moves": [
+      "Disable",
+      "Confusion",
+      "Psychic",
+      "Swift"
+    ]
+  },
+  "Mew": {
+    "name": "Mew",
+    "pokedex_number": 151,
+    "gen": 1,
+    "types": [
+      "Psychic"
+    ],
+    "base_stats": {
+      "hp": 100,
+      "atk": 100,
+      "def": 100,
+      "spa": 100,
+      "spd": 100,
+      "spe": 100
+    },
+    "default_moves": [
+      "Pound"
+    ]
+  }
+}

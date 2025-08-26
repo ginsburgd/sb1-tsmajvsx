@@ -19,7 +19,6 @@ export interface Move {
   power: number;
   accuracy: number;
   priority: number;
-  stab_applicable: boolean;
 }
 
 export interface RosterPokemon {

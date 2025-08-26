@@ -228,7 +228,7 @@ export class BattleSimulator {
     let damage = baseDamage;
     
     // STAB
-    if (move.stab_applicable && attacker.pokemon.types.includes(move.type)) {
+    if (attacker.pokemon.types.includes(move.type)) {
       damage *= 1.5;
     }
     
@@ -305,7 +305,7 @@ export class BattleSimulator {
     }
     
     // STAB
-    if (move.stab_applicable && attacker.pokemon.types.includes(move.type)) {
+    if (attacker.pokemon.types.includes(move.type)) {
       damage *= 1.5;
     }
     
