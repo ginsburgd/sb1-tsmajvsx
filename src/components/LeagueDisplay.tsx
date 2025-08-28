@@ -144,6 +144,11 @@ export function LeagueDisplay({ state, logs, errors }: LeagueDisplayProps) {
                     return (
                       <div key={index} className="bg-gray-50 rounded-lg p-3">
                         <div className="font-medium text-gray-900">{pokemonData?.name || pokemon.pokemon_id}</div>
+                        <img
+                          src={`../../assets/images/pokemon/pokemon/${pokemonData?.name}.png`}
+                          alt = {pokemon}
+                          className="w-8 h-8"
+                        />
                         <div className="text-xs text-gray-500">Level {pokemon.level}</div>
                         {pokemonData && (
                           <div className="flex gap-1 mt-1">

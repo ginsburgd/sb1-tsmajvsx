@@ -348,6 +348,12 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
                       onClick={() => handleDraftPick(pokemon)}
                       className={`flex items-center gap-2 p-2 rounded-lg border border-gray-200 hover:bg-gray-50 ${getColor(pokemon)}`}
                     >
+                    <img
+                      src={`../../assets/images/pokemon/pokemon/${pokemon}.png`}
+                      alt = {pokemon}
+                      className="w-8 h-8"
+                    />
+
                       <span className="font-medium text-sm text-white">{pokemon}</span>
                     </button>
                   ))}
