@@ -145,7 +145,7 @@ export function LeagueDisplay({ state, logs, errors }: LeagueDisplayProps) {
                       <div key={index} className="bg-gray-50 rounded-lg p-3">
                         <div className="font-medium text-gray-900">{pokemonData?.name || pokemon.pokemon_id}</div>
                         <img
-                          src={`/sb1-tsmajvsx/assets/images/pokemon/pokemon/${pokemonData?.name}.png`}
+                          src={`/assets/images/pokemon/pokemon/${pokemonData?.name}.png`}
                           alt = {pokemon}
                           className="w-8 h-8"
                         />
