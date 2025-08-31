@@ -349,7 +349,7 @@ export function CommandPanel({ onExecuteCommand, isLoading, state }: CommandPane
                       className={`flex items-center gap-2 p-2 rounded-lg border border-gray-200 hover:bg-gray-50 ${getColor(pokemon)}`}
                     >
                     <img
-                      src={`../../assets/images/pokemon/pokemon/${pokemon}.png`}
+                      src={`/sb1-tsmajvsx/assets/images/pokemon/pokemon/${pokemon}.png`}
                       alt = {pokemon}
                       className="w-8 h-8"
                     />
