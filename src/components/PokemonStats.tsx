@@ -58,6 +58,7 @@ export function PokemonStats() {
       <table className="min-w-full text-sm">
         <thead>
           <tr className="text-gray-700">
+            <th className="pb-2 text-left">Image</th>
             <th className="pb-2 text-left">Name</th>
             <th className="pb-2 text-left">Types</th>
             <th className="pb-2 text-right">HP</th>
@@ -71,6 +72,11 @@ export function PokemonStats() {
         <tbody>
           {entries.map(p => (
             <tr key={p.name} className="border-t border-gray-200">
+               <img
+                      src={`/pokemon/${p.name}.png`}
+                      alt={p.name}
+                      className="w-6 h-6"
+              />
               <td className="py-1 font-medium">{highlightMatch(p.name, nameFilter)}</td>
               <td className="py-1">
                 {p.types.map((t, i) => (
@@ -80,11 +86,6 @@ export function PokemonStats() {
                   </React.Fragment>
                 ))}
               </td>
-              <img
-                      src={`/pokemon/${p.name}.png`}
-                      alt={p.name}
-                      className="w-6 h-6"
-              />
               <td className="py-1 text-right font-mono">{p.base_stats.hp}</td>
               <td className="py-1 text-right font-mono">{p.base_stats.atk}</td>
               <td className="py-1 text-right font-mono">{p.base_stats.def}</td>
