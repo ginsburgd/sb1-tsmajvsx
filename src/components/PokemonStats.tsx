@@ -80,6 +80,11 @@ export function PokemonStats() {
                   </React.Fragment>
                 ))}
               </td>
+              <img
+                      src={`/pokemon/${p.name}.png`}
+                      alt={p.name}
+                      className="w-6 h-6"
+              />
               <td className="py-1 text-right font-mono">{p.base_stats.hp}</td>
               <td className="py-1 text-right font-mono">{p.base_stats.atk}</td>
               <td className="py-1 text-right font-mono">{p.base_stats.def}</td>
