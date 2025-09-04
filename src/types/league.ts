@@ -14,6 +14,7 @@ export interface Pokemon {
 }
 
 export interface Move {
+  name: string
   type: string;
   category: 'Physical' | 'Special' | 'Status';
   power: number;

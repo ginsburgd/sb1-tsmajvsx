@@ -101,6 +101,7 @@ def generate_move_stats_json(move_names_df, type_names_df):
   for i in range(len(move_names_df)):
     move_entry = {}
     move_name = move_names_df['identifier'][i].title()
+    move_entry['name'] = move_name
     move_entry['type'] = id_to_type[move_names_df['type_id'][i]]
     move_entry['category'] = id_to_damage_class(move_names_df['damage_class_id'][i]).title()
     move_entry['power'] = stat_to_int(move_names_df['power'][i])

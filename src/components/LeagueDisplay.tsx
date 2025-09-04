@@ -206,7 +206,12 @@ export function LeagueDisplay({ state, logs, errors }: LeagueDisplayProps) {
                         </div>
                         {result.battle_summary && (
                           <div className="text-sm text-gray-600 bg-gray-50 p-2 rounded">
-                            {result.battle_summary}
+                            {/* This is the key change! */}
+                              {result.battle_summary.split('\n').map((line, index) => (
+                                <div key={index} className="pb-1">
+                                  {line}
+                                </div>
+                            ))}
                           </div>
                         )}
                       </div>
